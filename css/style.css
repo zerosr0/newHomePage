@@ -1,0 +1,447 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Montserrat&display=swap");
+@font-face {
+  font-family: "krfont";
+  src: url("../files/pretendard.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  overflow: visible;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+header:hover {
+  height: 520px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+header:hover .header-container .header-top {
+  margin: 10px auto;
+}
+header:hover .header-container .header-top #gnb {
+  width: 85%;
+  align-items: flex-start;
+}
+header:hover .header-container .header-top #gnb li > a {
+  font-weight: bolder;
+}
+header:hover .header-container .header-top #gnb li .submenu {
+  display: flex;
+  flex-direction: column;
+}
+header .header-container .header-top {
+  width: 1280px;
+  margin: 25px auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+header .header-container .header-top .comp-logo {
+  display: block;
+  width: 100px;
+  height: 64px;
+}
+header .header-container .header-top .comp-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+header .header-container .header-top #gnb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  transition: 0.3s;
+}
+header .header-container .header-top #gnb li {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+header .header-container .header-top #gnb li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 45px;
+  color: #000;
+}
+header .header-container .header-top #gnb li .submenu {
+  display: none;
+}
+header .header-container .header-top #gnb li .submenu a {
+  font-family: "krfont";
+}
+
+main {
+  width: 100%;
+}
+main #visual {
+  position: relative;
+  width: 100%;
+  height: 930px;
+  overflow: hidden;
+}
+main #visual .panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(5, 5, 0);
+}
+main #visual .panel li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+main #visual .panel li.on img {
+  opacity: 0.8;
+  transform: scale(1.04);
+}
+main #visual .panel li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1);
+  transition: opacity 0.5s, transform 4.5s;
+}
+main #visual .btns {
+  display: flex;
+  position: absolute;
+  z-index: 3;
+  left: 10%;
+  bottom: 10%;
+  gap: 10px;
+}
+main #visual .btns li {
+  width: 100px;
+  height: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.5s;
+}
+main #visual .btns li.on {
+  width: 150px;
+  background-color: #555;
+}
+main #visual .icons {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  z-index: 3;
+  right: 10%;
+  bottom: 9%;
+}
+main #visual .icons i {
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: 0.5s;
+}
+main #visual .icons i:hover {
+  color: #fff;
+  transform: scale(1.3);
+}
+main #visual .bar {
+  width: 0%;
+  height: 5px;
+  background-color: #333;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+}
+main .intro {
+  position: relative;
+}
+main .intro .title {
+  text-align: center;
+  margin: 100px auto;
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: 1s;
+}
+main .intro .title.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+main .intro .intro-container {
+  position: relative;
+  width: 1280px;
+  height: 324px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(250px);
+  transition: 1s;
+  font-family: "krfont";
+}
+main .intro .intro-container.on {
+  transform: translateX(0);
+  opacity: 1;
+}
+main .intro .intro-container .intro-detail {
+  width: 50%;
+}
+main .intro .intro-container .intro-detail h3 {
+  margin-bottom: 20px;
+}
+main .intro .intro-container .intro-detail p {
+  line-height: 2;
+}
+main .intro .intro-container article {
+  position: absolute;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .intro .intro-container article .intro-img {
+  border-radius: 10px;
+}
+main .intro .intro-container article .white-logo {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+}
+main .intro h4,
+main .intro h5 {
+  display: block;
+  position: absolute;
+  font-size: 180px;
+  color: rgba(238, 238, 238, 0.5);
+  font-family: "Lato", sans-serif;
+  letter-spacing: -8px;
+  z-index: -1;
+}
+main .intro h4 {
+  top: 300px;
+  left: 0;
+}
+main .intro h5 {
+  top: 400px;
+  left: 0;
+}
+main .product .title {
+  text-align: center;
+  margin: 200px auto 100px;
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: 1s;
+}
+main .product .title.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+main .product .product-container {
+  position: relative;
+  width: 1280px;
+  margin: 0 auto;
+}
+main .product .product-container > div {
+  opacity: 0;
+  transform: translateX(-250px);
+  transition: 1.5s;
+}
+main .product .product-container > div::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+main .product .product-container > div.on {
+  opacity: 1;
+  transform: translateX(0);
+}
+main .product .product-container > div article {
+  width: 42%;
+  height: 320px;
+  background-color: aqua;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  overflow: hidden;
+}
+main .product .product-container > div article:hover img {
+  transform: scale(1.1);
+}
+main .product .product-container > div article img {
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+}
+main .product .product-container > div .product-detail {
+  width: 58%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 40%;
+  text-align: right;
+}
+main .product .product-container > div .product-detail .product-desc {
+  position: absolute;
+  top: 40%;
+  right: 0;
+}
+main .product .product-container > div .product-detail h3 {
+  margin-bottom: 20px;
+}
+main .product .product-container > div .product-detail span {
+  font-family: "krfont";
+}
+main .product .product-container > div .product-detail a {
+  position: absolute;
+  left: 40%;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 50px;
+  border: 2px solid #000;
+  border-radius: 25px;
+  color: #000;
+}
+main .product .product-container > div.right article {
+  float: right;
+}
+main .product .product-container > div.right .product-detail {
+  left: 0;
+  text-align: left;
+}
+main .product .product-container > div.right .product-detail .product-desc {
+  top: 30%;
+  left: 0;
+}
+main .product .product-container > div.right .product-detail a {
+  left: 30%;
+  bottom: 100px;
+}
+main .support {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(#508efe, #252c66);
+}
+main .support .support-container {
+  width: 1280px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+main .support .support-container p {
+  width: 60%;
+  text-align: left;
+  font-size: 30px;
+  color: #fff;
+}
+main .support .support-container a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #000;
+  width: 300px;
+  height: 80px;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  background-color: #fff;
+}
+main .partner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
+main .partner .title {
+  text-align: center;
+  margin: 50px auto 30px;
+}
+main .partner .partner-container {
+  position: relative;
+  width: auto;
+  height: 130px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: last baseline;
+  gap: 20px;
+  animation: logoRolling 28s infinite linear;
+}
+main .partner:hover .partner-container {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+main .info .info-container {
+  position: relative;
+  width: 1280px;
+  height: 150px;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+main .info .info-container a {
+  color: #000;
+  flex: 1;
+  height: 25%;
+  border-radius: 30px;
+  border: 2px solid #ddd;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+main .info .info-container a img {
+  width: 25px;
+  margin-right: 10px;
+}
+
+footer .footer-container {
+  width: 1280px;
+  padding-top: 100px;
+}
+footer .footer-container .copyright {
+  text-align: center;
+}
+
+@keyframes logoRolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2700px);
+  }
+}
+footer {
+  width: 100%;
+  height: 300px;
+  background-color: #f5f5f5;
+}
+footer .footer-container {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=style.css.map */
