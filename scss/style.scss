@@ -89,6 +89,10 @@ header {
 						display: none;
 						a {
 							font-family: "krfont";
+							&:hover {
+								color: #426eb5;
+								/*color: #252c66*/
+							}
 						}
 					}
 				}

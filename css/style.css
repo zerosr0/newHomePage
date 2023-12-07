@@ -92,6 +92,10 @@ header .header-container .header-top #gnb li .submenu {
 header .header-container .header-top #gnb li .submenu a {
   font-family: "krfont";
 }
+header .header-container .header-top #gnb li .submenu a:hover {
+  color: #426eb5;
+  /*color: #252c66*/
+}
 
 main {
   width: 100%;
