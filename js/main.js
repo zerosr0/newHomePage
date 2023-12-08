@@ -64,8 +64,8 @@ function progress() {
 
 //product scroll 
 const pages = document.querySelectorAll('.page');
-let h4 = document.querySelector('.intro .intro-container h4');
-const h5 = document.querySelector('.intro .intro-container h5');
+let h4 = document.querySelector('.intro h4');
+let h5 = document.querySelector('.intro h5');
 let posArr = [];
 
 getPos();
@@ -76,11 +76,11 @@ window.addEventListener('resize', getPos);
 
 window.addEventListener('scroll', () => {
   let scroll = window.scrollY || window.pageYOffset;
-  //parallex();
-  console.log(scroll);
+  parallex();
+  //console.log(scroll);
 
 
-  // [0, 1030, 1159, 1633, 0, 370, 740, 1110]
+  // [0, 0, 129, 1683, 0, 370, 740, 1110]
   //posArr[0] : header
   //posArr[1] : our company title
   if (scroll >= 200) {
@@ -130,17 +130,18 @@ window.addEventListener('scroll', () => {
 function getPos() {
   for (let el of pages) {
     posArr.push(el.offsetTop);
-    console.log(el.length);
+    console.log(posArr.length);
   }
 }
 
-// function parallex() {
-//   const scroll = window.scrollY || window.pageYOffset;
-//   const scroll2 = scroll - (posArr[3]);
-//   //8/21(월) 이거 수정하기!!!!!!!!!!!!!!!!
-//   if (scroll > posArr[3]) {
-//     h4.style.left = scroll2 + 'px';
-//     console.log(h4.style.left);
-//     h5.style.left = scroll2 * 2 + 'px';
-//   }
-// }
+function parallex() {
+  const scroll = window.scrollY || window.pageYOffset;
+  const scroll2 = scroll - (posArr[3] - 1000);
+  if (scroll > (posArr[3] - 1020)) {
+    h4.style.left = scroll2 + 'px';
+    console.log(h4.style.left);
+    //console.log(posArr[2]); 129
+    //console.log(posArr[3]); 1683
+    h5.style.left = scroll2 * 1.8 + 'px';
+  }
+}
