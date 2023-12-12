@@ -124,6 +124,12 @@ window.addEventListener('scroll', () => {
   } else {
     pages[7].classList.remove('on');
   }
+  //posArr[8] : news
+  if (scroll >= 2550) {
+    pages[8].classList.add('on');
+  } else {
+    pages[8].classList.remove('on');
+  }
 })
 
 
@@ -142,6 +148,6 @@ function parallex() {
     console.log(h4.style.left);
     //console.log(posArr[2]); 129
     //console.log(posArr[3]); 1683
-    h5.style.left = scroll2 * 1.8 + 'px';
+    h5.style.left = scroll2 * 1.7 + 'px';
   }
 }
