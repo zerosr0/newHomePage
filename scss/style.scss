@@ -274,7 +274,7 @@ main {
 			margin: 0 auto;
 			> div {
 				opacity: 0;
-				transform: translateX(-250px);
+				transform: translateY(-100px);
 				transition: 1.5s;
 				&::after {
 					display: block;
@@ -401,7 +401,7 @@ main {
 		}
 		.news-container {
 			margin-bottom: 100px;
-			ul {
+			.news-frame {
 				display: flex;
 				justify-content: space-around;
 				align-items: center;
