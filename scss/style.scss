@@ -1,3 +1,7 @@
+@import 'header';
+@import 'footer';
+@import 'support';
+
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Montserrat&display=swap");
 @font-face {
 	font-family: "krfont";
@@ -20,88 +24,7 @@ a {
 body {
 	overflow-x: hidden;
 }
-header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 3;
-	width: 100%;
-	overflow: visible;
-	background-color: rgb(255, 255, 255, 0.5);
-	&:hover {
-		height: 520px;
-		background-color: rgb(255, 255, 255, 0.9);
-		.header-container {
-			.header-top {
-				margin: 10px auto;
-				#gnb {
-					width: 85%;
-					align-items: flex-start;
-					li {
-						> a {
-							font-weight: bolder;
-						}
-						.submenu {
-							display: flex;
-							flex-direction: column;
-						}
-					}
-				}
-			}
-		}
-	}
-	.header-container {
-		.header-top {
-			width: 1280px;
-			margin: 25px auto;
-			position: relative;
-			z-index: 2;
-			display: flex;
-			justify-content: space-between;
-			.comp-logo {
-				display: block;
-				width: 100px;
-				height: 64px;
-				img {
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-				}
-			}
-			#gnb {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				width: 50%;
-				transition: 0.3s;
-				li {
-					flex: 1;
-					display: flex;
-					flex-direction: column;
-					justify-content: flex-start;
-					a {
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						width: 100%;
-						height: 45px;
-						color: #000;
-					}
-					.submenu {
-						display: none;
-						a {
-							font-family: "krfont";
-							&:hover {
-								color: #426eb5;
-								/*color: #252c66*/
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
+
 main {
 	width: 100%;
 	#visual {
@@ -194,7 +117,7 @@ main {
 				transform: translateY(0);
 			}
 		}
-		.intro-container {
+		.intro__container {
 			position: relative;
 			width: 1280px;
 			height: 324px;
@@ -202,16 +125,23 @@ main {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			opacity: 0;
-			transform: translateX(250px);
 			transition: 1s;
 			font-family: "krfont";
 			&.on {
-				transform: translateX(0);
-				opacity: 1;
+				.intro-detail{
+					transform: translateX(0);
+					opacity: 1;
+				}
+				article{
+					transform: translateX(0);
+					opacity: 1;
+				}
 			}
 			.intro-detail {
 				width: 50%;
+				transform: translateX(-250px);
+				opacity: 0;
+				transition: 1s;
 				h3 {
 					margin-bottom: 20px;
 				}
@@ -226,6 +156,9 @@ main {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				transform: translateX(250px);
+				opacity: 0;
+				transition: 1s;
 				.intro-img {
 					border-radius: 10px;
 				}
@@ -268,7 +201,7 @@ main {
 				transform: translateY(0);
 			}
 		}
-		.product-container {
+		.product__container {
 			position: relative;
 			width: 1280px;
 			margin: 0 auto;
@@ -283,7 +216,7 @@ main {
 				}
 				&.on {
 					opacity: 1;
-					transform: translateX(0);
+					transform: translateY(0);
 				}
 				article {
 					width: 42%;
@@ -359,18 +292,20 @@ main {
 		width: 100%;
 		height: 250px;
 		background: linear-gradient(#508efe, #252c66);
-		.support-container {
+		.support__container {
 			width: 1280px;
 			height: 100%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			margin: 0 auto;
-			p {
-				width: 60%;
-				text-align: left;
-				font-size: 30px;
+			.support__title-wrapper{
 				color: #fff;
+					.support__title {
+						text-align: left;
+						font-size: 30px;
+						margin-bottom: 15px;
+				}
 			}
 			a {
 				display: inline-flex;
@@ -388,6 +323,7 @@ main {
 	}
 	.news {
 		position: relative;
+		overflow: hidden;
 		.title {
 			text-align: center;
 			margin: 100px auto;
@@ -399,7 +335,8 @@ main {
 				transform: translateY(0);
 			}
 		}
-		.news-container {
+		.news__container {
+			width: 100%;
 			margin-bottom: 100px;
 			display: flex;
 			&::before {
@@ -416,34 +353,50 @@ main {
 			.news-btns {
 				width: 25%;
 				.pre-btn {
-					width: 20px;
-					position: relative;
-					&::before {
-						content: "";
-						display: block;
-						border-bottom: 1px solid #000;
-						transform: rotate(-45deg);
-						position: relative;
-						margin-top: -10px;
+					display: inline-block;
+					margin-right: 30px;
+					cursor: pointer;
+					&:hover {
+						img {
+							filter: invert(46%) sepia(46%) saturate(2503%)
+								hue-rotate(203deg) brightness(104%)
+								contrast(99%);
+						}
 					}
-					&::after {
-						content: "";
-						display: block;
-						border-bottom: 1px solid #000;
-						transform: rotate(45deg) translateY(0%);
+					img {
+						width: 20px;
+						margin-right: 10px;
+						transform: rotate(180deg);
+						margin-top: 5px;
+					}
+				}
+				.next-btn {
+					display: inline-block;
+					cursor: pointer;
+					&:hover {
+						img {
+							filter: invert(46%) sepia(46%) saturate(2503%)
+								hue-rotate(203deg) brightness(104%)
+								contrast(99%);
+						}
+					}
+					img {
+						width: 20px;
+						margin-left: 10px;
 					}
 				}
 			}
 			.news-frame {
 				display: flex;
-				justify-content: space-around;
+				justify-content: space-between;
 				align-items: center;
+				overflow: hidden;
 				width: 75%;
 				gap: 30px;
 				article {
 					.img-wrap {
-						width: 340px;
-						height: 200px;
+						width: 400px;
+						height: 220px;
 						margin-bottom: 20px;
 						img {
 							width: 100%;
@@ -467,7 +420,7 @@ main {
 			text-align: center;
 			margin: 50px auto 30px;
 		}
-		.partner-container {
+		.partner__container {
 			position: relative;
 			width: auto;
 			height: 130px;
@@ -478,7 +431,7 @@ main {
 			animation: logoRolling 28s infinite linear;
 		}
 		&:hover {
-			.partner-container {
+			.partner__container {
 				animation-play-state: paused;
 				cursor: pointer;
 			}
@@ -487,7 +440,7 @@ main {
 	.info {
 		background: url(../image/down_bg.jpg) fixed no-repeat
 			center;
-		.info-container {
+		.info__container {
 			position: relative;
 			width: 1280px;
 			height: 200px;
@@ -513,19 +466,7 @@ main {
 		}
 	}
 }
-footer {
-	width: 100%;
-	height: 320px;
-	background-color: #f5f5f5;
-	.footer-container {
-		width: 1280px;
-		margin: 0 auto;
-		padding-top: 100px;
-		.copyright {
-			text-align: center;
-		}
-	}
-}
+
 
 @keyframes logoRolling {
 	0% {

@@ -13,7 +13,7 @@
 
 <body>
   <header class="page">
-    <div class="header-container">
+    <div class="header__container">
       <div class="header-top">
         <a href="#" class="comp-logo"><img src="image/logo.png" alt=""></a>
         <ul id="gnb">
@@ -45,7 +45,8 @@
           <li><a href="http://www.solva.co.kr/Inform_Dev/Development.aspx">System</a>
             <div class="submenu system-sub">
               <a href="http://www.solva.co.kr/Inform_Dev/Development.aspx">개발 방법록</a>
-              <a href="http://www.solva.co.kr/Inform_Dev/Systembuild.aspx">APQP Based QMS구축방안</a>
+              <a href="http://www.solva.co.kr/Inform_Dev/Systembuild.aspx" style="line-height: 1.5;">APQP Based<br>
+                QMS구축방안</a>
               <a href="http://www.solva.co.kr/Inform_Dev/Maintenance.aspx">유지보수 서비스방안</a>
             </div>
           </li>
@@ -58,7 +59,7 @@
               <a href="http://www.solva.co.kr/Datacenter_Dev/Development_quality.aspx">개발품질</a>
             </div>
           </li>
-          <li><a href="http://www.solva.co.kr/Customer_Dev/Notice.aspx">Support</a>
+          <li><a href="support.html">Support</a>
             <div class="submenu support-sub">
               <a href="http://www.solva.co.kr/Customer_Dev/Notice.aspx">공지사항</a>
               <a href="http://www.solva.co.kr/Customer_Dev/career.aspx">채용정보</a>
@@ -70,10 +71,13 @@
     </div>
   </header>
 
-  <main>
+  <main role="main">
     <section id="visual">
       <ul class="panel">
-        <li><img src="image/main bg.jpg" alt="mainbg1"></li>
+        <li><img src="image/main bg.jpg" alt="mainbg1">
+          <h3>SMART FACTORY 사업</h3>
+          <p></p>
+        </li>
         <li><img src="image/main bg2.jpg" alt="mainbg2"></li>
         <li><img src="image/main bg3.jpg" alt="mainbg3"></li>
         <li><img src="image/main bg4.jpg" alt="mainbg4"></li>
@@ -93,7 +97,7 @@
 
     <section class="intro">
       <h2 class="title page">Our company</h2>
-      <div class="intro-container page">
+      <div class="intro__container page">
         <div class="intro-detail">
           <h3>솔바테크놀러지는,</h3>
           <p>응용 소프트웨어 솔루션 개발과 스마트 팩토리 구축 및 정보화 컨설팅,<br>
@@ -109,7 +113,7 @@
 
     <section class="product">
       <h2 class="title page">Our Products</h2>
-      <div class="product-container">
+      <div class="product__container">
         <div class="qms page">
           <article><img src="image/qms.png" alt="qms image"></article>
           <div class="product-detail">
@@ -154,19 +158,21 @@
     </section>
 
     <section class="support">
-      <div class="support-container">
-        <p>궁금한 점이 있으신가요?<br>
-          귀사에 필요한 솔루션을 정확하게 분석하여 알려드립니다.</p>
+      <div class="support__container">
+        <div class="support__title-wrapper">
+          <p class="support__title">서비스 이용에 도움이 필요하신가요?</p>
+          <span class="support__sub-title">귀사에 필요한 솔루션을 정확하게 분석하여 알려드립니다.</span>
+        </div>
         <a href="">문의하기</a>
       </div>
     </section>
 
     <section class="news">
       <h2 class="title page">Recent News</h2>
-      <div class="news-container">
+      <div class="news__container">
         <div class="news-btns">
-          <div class="pre-btn on"></div>
-          <div class="next-btn"></div>
+          <div class="pre-btn on"><img src="./image/arrow.svg" alt="">PREV</div>
+          <div class="next-btn">NEXT<img src="./image/arrow.svg" alt=""></div>
         </div>
         <section class="news-frame">
           <article>
@@ -200,7 +206,7 @@
     <section class="partner">
       <h2 class="title">Our Partener Company</h2>
       <!-- 주요 파트너사 20사 -->
-      <div class="partner-container" onClick="location.href='http://www.solva.co.kr/Company_Dev/Partner.aspx'">>
+      <div class="partner__container" onClick="location.href='http://www.solva.co.kr/Company_Dev/Partner.aspx'">>
         <img src="image/1.png" alt="partner company1">
         <img src="image/2.png" alt="partner company2">
         <img src="image/3.png" alt="partner company3">
@@ -225,7 +231,7 @@
     </section>
 
     <section class="info">
-      <div class="info-container">
+      <div class="info__container">
         <a href="files/product_brochure202106.pdf" class="product-intro"><img src="image/download.svg"
             alt="download icon">제품 브로슈어</a>
         <a href="files/companyIntroduce_brochure202107.pdf" class="company-intro"><img src="image/download.svg"
@@ -237,7 +243,7 @@
     </section>
   </main>
   <footer>
-    <div class="footer-container">
+    <div class="footer__container">
       <p>서울본사 : 서울시 금천구 가산디지털 2로 184. 413호(가산동, 벽산디지털밸리2차)</p>
       <p>Tel. 02-862-4975</p>
       <p>Fax. 02-862-4947</p>

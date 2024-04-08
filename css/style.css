@@ -1,4 +1,100 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Montserrat&display=swap");
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  overflow: visible;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+header:hover {
+  height: 520px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+header:hover .header__container .header-top {
+  margin: 10px auto;
+}
+header:hover .header__container .header-top #gnb {
+  width: 85%;
+  align-items: flex-start;
+}
+header:hover .header__container .header-top #gnb li > a {
+  font-weight: bolder;
+}
+header:hover .header__container .header-top #gnb li .submenu {
+  display: flex;
+  flex-direction: column;
+}
+header .header__container .header-top {
+  width: 1280px;
+  margin: 25px auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+}
+header .header__container .header-top .comp-logo {
+  display: block;
+  width: 100px;
+  height: 64px;
+}
+header .header__container .header-top .comp-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+header .header__container .header-top #gnb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  transition: 0.3s;
+}
+header .header__container .header-top #gnb li {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+header .header__container .header-top #gnb li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 45px;
+  color: #000;
+}
+header .header__container .header-top #gnb li .submenu {
+  display: none;
+}
+header .header__container .header-top #gnb li .submenu a {
+  font-family: "krfont";
+}
+header .header__container .header-top #gnb li .submenu a:hover {
+  color: #426eb5;
+  /*color: #252c66*/
+}
+
+footer {
+  width: 100%;
+  height: 320px;
+  background-color: #f5f5f5;
+}
+footer .footer__container {
+  width: 1280px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+footer .footer__container .copyright {
+  text-align: center;
+}
+
+main.support__main {
+  position: relative;
+  padding: 80px 50px;
+}
+
 @font-face {
   font-family: "krfont";
   src: url("../files/pretendard.ttf") format("truetype");
@@ -22,83 +118,6 @@ a {
 
 body {
   overflow-x: hidden;
-}
-
-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 3;
-  width: 100%;
-  overflow: visible;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-header:hover {
-  height: 520px;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-header:hover .header-container .header-top {
-  margin: 10px auto;
-}
-header:hover .header-container .header-top #gnb {
-  width: 85%;
-  align-items: flex-start;
-}
-header:hover .header-container .header-top #gnb li > a {
-  font-weight: bolder;
-}
-header:hover .header-container .header-top #gnb li .submenu {
-  display: flex;
-  flex-direction: column;
-}
-header .header-container .header-top {
-  width: 1280px;
-  margin: 25px auto;
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-}
-header .header-container .header-top .comp-logo {
-  display: block;
-  width: 100px;
-  height: 64px;
-}
-header .header-container .header-top .comp-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-header .header-container .header-top #gnb {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 50%;
-  transition: 0.3s;
-}
-header .header-container .header-top #gnb li {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-header .header-container .header-top #gnb li a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 45px;
-  color: #000;
-}
-header .header-container .header-top #gnb li .submenu {
-  display: none;
-}
-header .header-container .header-top #gnb li .submenu a {
-  font-family: "krfont";
-}
-header .header-container .header-top #gnb li .submenu a:hover {
-  color: #426eb5;
-  /*color: #252c66*/
 }
 
 main {
@@ -194,7 +213,7 @@ main .intro .title.on {
   opacity: 1;
   transform: translateY(0);
 }
-main .intro .intro-container {
+main .intro .intro__container {
   position: relative;
   width: 1280px;
   height: 324px;
@@ -202,36 +221,44 @@ main .intro .intro-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  opacity: 0;
-  transform: translateX(250px);
   transition: 1s;
   font-family: "krfont";
 }
-main .intro .intro-container.on {
+main .intro .intro__container.on .intro-detail {
   transform: translateX(0);
   opacity: 1;
 }
-main .intro .intro-container .intro-detail {
-  width: 50%;
+main .intro .intro__container.on article {
+  transform: translateX(0);
+  opacity: 1;
 }
-main .intro .intro-container .intro-detail h3 {
+main .intro .intro__container .intro-detail {
+  width: 50%;
+  transform: translateX(-250px);
+  opacity: 0;
+  transition: 1s;
+}
+main .intro .intro__container .intro-detail h3 {
   margin-bottom: 20px;
 }
-main .intro .intro-container .intro-detail p {
+main .intro .intro__container .intro-detail p {
   line-height: 2;
 }
-main .intro .intro-container article {
+main .intro .intro__container article {
   position: absolute;
   right: 0;
   z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateX(250px);
+  opacity: 0;
+  transition: 1s;
 }
-main .intro .intro-container article .intro-img {
+main .intro .intro__container article .intro-img {
   border-radius: 10px;
 }
-main .intro .intro-container article .white-logo {
+main .intro .intro__container article .white-logo {
   position: absolute;
   width: 40%;
   height: 40%;
@@ -268,26 +295,26 @@ main .product .title.on {
   opacity: 1;
   transform: translateY(0);
 }
-main .product .product-container {
+main .product .product__container {
   position: relative;
   width: 1280px;
   margin: 0 auto;
 }
-main .product .product-container > div {
+main .product .product__container > div {
   opacity: 0;
   transform: translateY(-100px);
   transition: 1.5s;
 }
-main .product .product-container > div::after {
+main .product .product__container > div::after {
   display: block;
   content: "";
   clear: both;
 }
-main .product .product-container > div.on {
+main .product .product__container > div.on {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateY(0);
 }
-main .product .product-container > div article {
+main .product .product__container > div article {
   width: 42%;
   height: 320px;
   background-color: aqua;
@@ -295,15 +322,15 @@ main .product .product-container > div article {
   margin-bottom: 50px;
   overflow: hidden;
 }
-main .product .product-container > div article:hover img {
+main .product .product__container > div article:hover img {
   transform: scale(1.1);
 }
-main .product .product-container > div article img {
+main .product .product__container > div article img {
   width: 100%;
   height: 100%;
   transition: 0.5s;
 }
-main .product .product-container > div .product-detail {
+main .product .product__container > div .product-detail {
   width: 58%;
   height: 100%;
   position: absolute;
@@ -311,18 +338,18 @@ main .product .product-container > div .product-detail {
   left: 40%;
   text-align: right;
 }
-main .product .product-container > div .product-detail .product-desc {
+main .product .product__container > div .product-detail .product-desc {
   position: absolute;
   top: 40%;
   right: 0;
 }
-main .product .product-container > div .product-detail h3 {
+main .product .product__container > div .product-detail h3 {
   margin-bottom: 20px;
 }
-main .product .product-container > div .product-detail span {
+main .product .product__container > div .product-detail span {
   font-family: "krfont";
 }
-main .product .product-container > div .product-detail a {
+main .product .product__container > div .product-detail a {
   position: absolute;
   left: 40%;
   bottom: 30px;
@@ -335,18 +362,18 @@ main .product .product-container > div .product-detail a {
   border-radius: 25px;
   color: #000;
 }
-main .product .product-container > div.right article {
+main .product .product__container > div.right article {
   float: right;
 }
-main .product .product-container > div.right .product-detail {
+main .product .product__container > div.right .product-detail {
   left: 0;
   text-align: left;
 }
-main .product .product-container > div.right .product-detail .product-desc {
+main .product .product__container > div.right .product-detail .product-desc {
   top: 30%;
   left: 0;
 }
-main .product .product-container > div.right .product-detail a {
+main .product .product__container > div.right .product-detail a {
   left: 30%;
   bottom: 100px;
 }
@@ -355,7 +382,7 @@ main .support {
   height: 250px;
   background: linear-gradient(#508efe, #252c66);
 }
-main .support .support-container {
+main .support .support__container {
   width: 1280px;
   height: 100%;
   display: flex;
@@ -363,13 +390,15 @@ main .support .support-container {
   align-items: center;
   margin: 0 auto;
 }
-main .support .support-container p {
-  width: 60%;
-  text-align: left;
-  font-size: 30px;
+main .support .support__container .support__title-wrapper {
   color: #fff;
 }
-main .support .support-container a {
+main .support .support__container .support__title-wrapper .support__title {
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+main .support .support__container a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -383,6 +412,7 @@ main .support .support-container a {
 }
 main .news {
   position: relative;
+  overflow: hidden;
 }
 main .news .title {
   text-align: center;
@@ -395,11 +425,12 @@ main .news .title.on {
   opacity: 1;
   transform: translateY(0);
 }
-main .news .news-container {
+main .news .news__container {
+  width: 100%;
   margin-bottom: 100px;
   display: flex;
 }
-main .news .news-container::before {
+main .news .news__container::before {
   display: block;
   content: "";
   position: absolute;
@@ -410,45 +441,53 @@ main .news .news-container::before {
   height: 700px;
   background-color: #f2f2f2;
 }
-main .news .news-container .news-btns {
+main .news .news__container .news-btns {
   width: 25%;
 }
-main .news .news-container .news-btns .pre-btn {
+main .news .news__container .news-btns .pre-btn {
+  display: inline-block;
+  margin-right: 30px;
+  cursor: pointer;
+}
+main .news .news__container .news-btns .pre-btn:hover img {
+  filter: invert(46%) sepia(46%) saturate(2503%) hue-rotate(203deg) brightness(104%) contrast(99%);
+}
+main .news .news__container .news-btns .pre-btn img {
   width: 20px;
-  position: relative;
+  margin-right: 10px;
+  transform: rotate(180deg);
+  margin-top: 5px;
 }
-main .news .news-container .news-btns .pre-btn::before {
-  content: "";
-  display: block;
-  border-bottom: 1px solid #000;
-  transform: rotate(-45deg);
-  position: relative;
-  margin-top: -10px;
+main .news .news__container .news-btns .next-btn {
+  display: inline-block;
+  cursor: pointer;
 }
-main .news .news-container .news-btns .pre-btn::after {
-  content: "";
-  display: block;
-  border-bottom: 1px solid #000;
-  transform: rotate(45deg) translateY(0%);
+main .news .news__container .news-btns .next-btn:hover img {
+  filter: invert(46%) sepia(46%) saturate(2503%) hue-rotate(203deg) brightness(104%) contrast(99%);
 }
-main .news .news-container .news-frame {
+main .news .news__container .news-btns .next-btn img {
+  width: 20px;
+  margin-left: 10px;
+}
+main .news .news__container .news-frame {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  overflow: hidden;
   width: 75%;
   gap: 30px;
 }
-main .news .news-container .news-frame article .img-wrap {
-  width: 340px;
-  height: 200px;
+main .news .news__container .news-frame article .img-wrap {
+  width: 400px;
+  height: 220px;
   margin-bottom: 20px;
 }
-main .news .news-container .news-frame article .img-wrap img {
+main .news .news__container .news-frame article .img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-main .news .news-container .news-frame article p {
+main .news .news__container .news-frame article p {
   width: 100%;
 }
 main .partner {
@@ -461,7 +500,7 @@ main .partner .title {
   text-align: center;
   margin: 50px auto 30px;
 }
-main .partner .partner-container {
+main .partner .partner__container {
   position: relative;
   width: auto;
   height: 130px;
@@ -471,14 +510,14 @@ main .partner .partner-container {
   gap: 20px;
   animation: logoRolling 28s infinite linear;
 }
-main .partner:hover .partner-container {
+main .partner:hover .partner__container {
   animation-play-state: paused;
   cursor: pointer;
 }
 main .info {
   background: url(../image/down_bg.jpg) fixed no-repeat center;
 }
-main .info .info-container {
+main .info .info__container {
   position: relative;
   width: 1280px;
   height: 200px;
@@ -487,7 +526,7 @@ main .info .info-container {
   align-items: center;
   gap: 50px;
 }
-main .info .info-container a {
+main .info .info__container a {
   color: #282828;
   background-color: #eee;
   flex: 1;
@@ -498,23 +537,9 @@ main .info .info-container a {
   justify-content: center;
   align-items: center;
 }
-main .info .info-container a img {
+main .info .info__container a img {
   width: 25px;
   margin-right: 10px;
-}
-
-footer {
-  width: 100%;
-  height: 320px;
-  background-color: #f5f5f5;
-}
-footer .footer-container {
-  width: 1280px;
-  margin: 0 auto;
-  padding-top: 100px;
-}
-footer .footer-container .copyright {
-  text-align: center;
 }
 
 @keyframes logoRolling {

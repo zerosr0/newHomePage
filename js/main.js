@@ -125,7 +125,7 @@ window.addEventListener('scroll', () => {
     pages[7].classList.remove('on');
   }
   //posArr[8] : news
-  if (scroll >= 2550) {
+  if (scroll >= 2650) {
     pages[8].classList.add('on');
   } else {
     pages[8].classList.remove('on');
