@@ -68,7 +68,7 @@ header {
 					.submenu {
 						display: none;
 						a {
-							font-family: "krfont";
+							font-family: $main-font;
 							&:hover {
 								color: #426eb5;
 								/*color: #252c66*/
