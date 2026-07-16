@@ -686,14 +686,7 @@ main .support.expanded::before {
 }
 
 main .support::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: #f2f2f2;
-  z-index: 1;
-  pointer-events: none;
-  opacity: var(--overlay-opacity, 1);
-  transition: opacity 0.1s ease-out;
+  display: none; /* Hide scroll overlay completely */
 }
 
 main .support .support__container {
@@ -711,9 +704,7 @@ main .support .support__container.initial-content {
 }
 
 main .support .support__container.initial-content .support__title-wrapper {
-  color: #000;
-  /* fallback color */
-  transition: color 0.1s ease-out;
+  color: #fff; /* Always white */
 }
 
 main .support .support__container.initial-content .support__title-wrapper .support__title {
@@ -730,14 +721,17 @@ main .support .support__container.initial-content a.support__btn {
   width: 300px;
   height: 80px;
   border-radius: 50px;
-  border: 1px solid #252c66;
-  background-color: rgba(255, 255, 255, 0);
-  color: #252c66;
-  transition: background-color 0.1s ease-out, color 0.1s ease-out, border-color 0.1s ease-out, transform 0.2s ease-out;
+  border: 1px solid #fff; /* Static white border */
+  background-color: #fff; /* Static white background */
+  color: #000; /* Static black text */
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   cursor: pointer;
 }
 
 main .support .support__container.initial-content a.support__btn:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
   transform: scale(1.05);
 }
 
@@ -1005,7 +999,7 @@ main .news .news__container::before {
   content: "";
   position: absolute;
   z-index: -1;
-  top: -100px;
+  top: 0;
   left: 0;
   width: 43%;
   height: 700px;
@@ -1130,6 +1124,7 @@ main .partner:hover .partner__container {
 
 main .info {
   background: url(../image/down_bg.jpg) fixed no-repeat center;
+  overflow: hidden;
 }
 
 main .info .info__container {
@@ -1257,6 +1252,270 @@ main #visual .panel li.on .visual-txt-box .split-text .char {
 @media screen and (max-width: 768px) {
   main #visual .panel li .visual-txt-box .split-text {
     font-size: 8.5vw;
+  }
+}
+
+/* Clients Section (Rathontech Style) */
+.clients {
+  padding: 30px 0 120px;
+  background: #F1F5F8;
+  text-align: center;
+  overflow: hidden;
+}
+
+.clients .clients-inner {
+  width: 92%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+main .clients .title {
+  text-align: center;
+  margin: 100px auto;
+  opacity: 0;
+  transform: translateY(-80px);
+  transition: 1s;
+}
+
+main .clients .title.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.clients .tab-menu {
+  margin: 50px auto 80px;
+  position: relative;
+}
+
+.clients .tab-menu>p {
+  position: relative;
+  display: none;
+  width: 100%;
+  height: 42px;
+  background: #009AFF;
+  color: white;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.clients .tab-menu>p::after {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  display: block;
+  border: 5px solid transparent;
+  border-top: 7px solid white;
+  transform: translateY(-25%);
+  transition: .3s ease-in-out;
+}
+
+.clients .tab-menu>p.active::after {
+  transform: translateY(-65%) rotate(180deg);
+}
+
+.clients .tab-menu ul {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+  background: transparent;
+}
+
+.clients .tab-menu button {
+  padding: 10px 28px;
+  border-radius: 50px;
+  background: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #4a5568;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.clients .tab-menu button:hover {
+  color: #000;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+.clients .tab-menu button.active {
+  background: #009AFF;
+  color: white;
+  border-color: #009AFF;
+  box-shadow: 0 10px 15px -3px rgba(0, 154, 255, 0.3), 0 4px 6px -2px rgba(0, 154, 255, 0.2);
+}
+
+.clients .client-logos {
+  position: relative;
+  height: 310px;
+  /* Increased from 280px to prevent box-shadow clipping */
+  overflow: hidden;
+  padding-bottom: 20px;
+  /* Ample room for bottom box shadow */
+}
+
+.clients .client-logos h3 {
+  display: none;
+}
+
+.clients .tab-cont {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.clients .tab-cont.active {
+  display: flex;
+  position: relative;
+}
+
+.clients .client-logos ul {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.clients .client-logos ul:last-child {
+  margin-top: 20px;
+}
+
+.clients .client-logos ul li {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 316px;
+  height: 130px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0px 10px 15px 0px rgba(129, 129, 129, 0.08);
+  /* Soft shadows */
+}
+
+.clients .client-logos ul li img {
+  max-width: 80%;
+  max-height: 70%;
+  object-fit: contain;
+  filter: none;
+  /* Changed from grayscale(1) to show original color */
+  opacity: 1;
+  /* Full opacity */
+  transition: all 0.3s ease;
+}
+
+.clients .client-logos ul li img:hover {
+  transform: scale(1.05);
+  /* Soft premium hover scaling */
+}
+
+@media screen and (max-width: 768px) {
+  .clients {
+    padding: 80px 0;
+  }
+
+  .clients .title {
+    font-size: 36px;
+    margin: 50px auto;
+  }
+
+  .clients .tab-menu {
+    z-index: 2;
+    position: relative;
+    width: calc(100% - 40px);
+    height: 42px;
+    padding: 0;
+    margin: 30px auto 40px;
+    font-size: 15px;
+  }
+
+  .clients .tab-menu ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0px 7px 7px 0px rgba(129, 129, 129, 0.15);
+    border-radius: 20px;
+    z-index: 10;
+    background: white;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .clients .tab-menu li {
+    width: 100%;
+  }
+
+  .clients .tab-menu button {
+    width: 100%;
+    height: 40px;
+    padding: 4px 22px;
+    text-align: left;
+    border-radius: 0;
+  }
+
+  .clients .tab-menu li:first-child button {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .clients .tab-menu li:last-child button {
+    border-radius: 0 0 20px 20px;
+  }
+
+  .clients .tab-menu button.active {
+    background: #F1F5F8;
+    color: #333;
+  }
+
+  .clients .tab-menu>p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .clients .client-logos {
+    height: 156px;
+    /* Increased from 132px to prevent box-shadow clipping in mobile */
+  }
+
+  .clients .client-logos ul {
+    gap: 10px;
+  }
+
+  .clients .client-logos ul li {
+    width: 165px;
+    height: 68px;
+    padding: 15px;
+    border-radius: 7px;
+  }
+
+  .clients .client-logos ul:last-child {
+    margin-top: 10px;
   }
 }
 

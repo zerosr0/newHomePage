@@ -55,23 +55,66 @@ let h4 = document.querySelector('.intro h4');
 let h5 = document.querySelector('.intro h5');
 let posArr = [];
 
-getPos();
+// Cache DOM queries for scroll animations
+const introSection = document.querySelector('.intro');
+const introArticle = introSection ? introSection.querySelector('.intro__container article') : null;
+const introDetail = introSection ? introSection.querySelector('.intro-detail') : null;
+const introWhiteLogo = introSection ? introSection.querySelector('.white-logo') : null;
+
+const supportSection = document.querySelector('.support');
+const supportTitle = supportSection ? supportSection.querySelector('.support__title-wrapper') : null;
+const supportBtn = supportSection ? supportSection.querySelector('.support__container a') : null;
+
+// Cache window dimensions and element metrics
+let cachedWindowWidth = window.innerWidth;
+let cachedWindowHeight = window.innerHeight;
+let introOffsetTop = introSection ? getAbsoluteOffsetTop(introSection) : 0;
+let introHeight = introSection ? introSection.offsetHeight : 0;
+let supportOffsetTop = supportSection ? getAbsoluteOffsetTop(supportSection) : 0;
+let supportHeight = supportSection ? supportSection.offsetHeight : 0;
+
+function updateMetrics() {
+  getPos();
+  cachedWindowWidth = window.innerWidth;
+  cachedWindowHeight = window.innerHeight;
+  introOffsetTop = introSection ? getAbsoluteOffsetTop(introSection) : 0;
+  introHeight = introSection ? introSection.offsetHeight : 0;
+  supportOffsetTop = supportSection ? getAbsoluteOffsetTop(supportSection) : 0;
+  supportHeight = supportSection ? supportSection.offsetHeight : 0;
+}
+
+updateMetrics();
 console.log(posArr);
-window.addEventListener('resize', getPos);
+window.addEventListener('resize', updateMetrics);
+
+// requestAnimationFrame Throttle
+let lastScrollY = window.scrollY || window.pageYOffset;
+let isTicking = false;
 
 window.addEventListener('scroll', () => {
-  let scroll = window.scrollY || window.pageYOffset;
-  parallex();
+  lastScrollY = window.scrollY || window.pageYOffset;
+  if (!isTicking) {
+    window.requestAnimationFrame(() => {
+      updateScrollAnimations(lastScrollY);
+      isTicking = false;
+    });
+    isTicking = true;
+  }
+});
+
+function updateScrollAnimations(scroll) {
+  // Parallex
+  parallex(scroll);
 
   // Dynamic Scroll Triggering for page sections
   pages.forEach((page, idx) => {
     if (idx === 0) return; // skip header
 
-    let threshold = posArr[idx] - window.innerHeight * 0.85;
+    let threshold = posArr[idx] - cachedWindowHeight * 0.85;
 
     // Adjust triggers slightly to feel identical to original design
-    if (idx === 1) threshold = posArr[1] - window.innerHeight * 0.95; // Our company title
-    if (idx === 2) threshold = posArr[2] - window.innerHeight * 0.9;  // Our company container
+    if (idx === 1) threshold = posArr[1] - cachedWindowHeight * 0.95; // Our company title
+    if (idx === 2) threshold = posArr[2] - cachedWindowHeight * 0.9;  // Our company container
 
     if (scroll >= threshold) {
       page.classList.add('on');
@@ -81,15 +124,12 @@ window.addEventListener('scroll', () => {
   });
 
   // --- Intro Section Shrink & Text Fade-in Scroll Animation ---
-  const introSection = document.querySelector('.intro');
   if (introSection) {
-    const rect = introSection.getBoundingClientRect();
-    const sectionHeight = rect.height;
-    const viewportHeight = window.innerHeight;
-    const totalScrollable = sectionHeight - viewportHeight;
+    const rectTop = introOffsetTop - scroll;
+    const totalScrollable = introHeight - cachedWindowHeight;
 
     // Scroll progress (0 to 1) inside .intro
-    let progress = -rect.top / totalScrollable;
+    let progress = -rectTop / totalScrollable;
     progress = Math.max(0, Math.min(1, progress));
 
     // Shrinking phase runs from progress = 0 to progress = 0.7
@@ -100,39 +140,33 @@ window.addEventListener('scroll', () => {
     const containerWidth = 1280;
     const containerHeight = 324;
 
-    const viewportWidth = window.innerWidth;
-
-    const containerLeft = (viewportWidth - containerWidth) / 2;
-    const containerTop = (viewportHeight - containerHeight) / 2;
+    const containerLeft = (cachedWindowWidth - containerWidth) / 2;
+    const containerTop = (cachedWindowHeight - containerHeight) / 2;
 
     const startLeft = -containerLeft;
     const startTop = -379;
     const finalLeft = containerWidth - finalWidth; // 704
     const finalTop = 0;
 
-    const article = introSection.querySelector('.intro__container article');
-    const introDetail = introSection.querySelector('.intro-detail');
-    const whiteLogo = introSection.querySelector('.white-logo');
-
-    if (article) {
+    if (introArticle) {
       // Interpolate dimensions and position relative to .intro__container
-      const currentWidth = viewportWidth - (viewportWidth - finalWidth) * animProgress;
-      const currentHeight = viewportHeight - (viewportHeight - finalHeight) * animProgress;
+      const currentWidth = cachedWindowWidth - (cachedWindowWidth - finalWidth) * animProgress;
+      const currentHeight = cachedWindowHeight - (cachedWindowHeight - finalHeight) * animProgress;
       const currentLeft = startLeft + (finalLeft - startLeft) * animProgress;
       const currentTop = startTop + (finalTop - startTop) * animProgress;
       const currentBorderRadius = 10 * animProgress;
 
-      article.style.width = `${currentWidth}px`;
-      article.style.height = `${currentHeight}px`;
-      article.style.left = `${currentLeft}px`;
-      article.style.top = `${currentTop}px`;
-      article.style.borderRadius = `${currentBorderRadius}px`;
+      introArticle.style.width = `${currentWidth}px`;
+      introArticle.style.height = `${currentHeight}px`;
+      introArticle.style.left = `${currentLeft}px`;
+      introArticle.style.top = `${currentTop}px`;
+      introArticle.style.borderRadius = `${currentBorderRadius}px`;
 
       // Set zIndex: cover on top when full screen, go down when shrunk
       if (animProgress < 0.9) {
-        article.style.zIndex = '10';
+        introArticle.style.zIndex = '10';
       } else {
-        article.style.zIndex = '3';
+        introArticle.style.zIndex = '3';
       }
     }
 
@@ -151,63 +185,18 @@ window.addEventListener('scroll', () => {
       }
     }
 
-    if (whiteLogo) {
+    if (introWhiteLogo) {
       // Logo fades in as image shrinks
       let logoProgress = 0;
       if (animProgress > 0.3) {
         logoProgress = (animProgress - 0.3) / 0.7;
       }
-      whiteLogo.style.opacity = logoProgress;
+      introWhiteLogo.style.opacity = logoProgress;
     }
   }
 
-  // Support section background color and text transitions
-  const supportSection = document.querySelector('.support');
-  if (supportSection && !supportSection.classList.contains('expanded')) {
-    const supportTitle = supportSection.querySelector('.support__title-wrapper');
-    const supportBtn = supportSection.querySelector('.support__container a');
-    const rect = supportSection.getBoundingClientRect();
-    const viewHeight = window.innerHeight;
 
-    let ratio = 0;
-    if (rect.top > viewHeight) {
-      ratio = 0;
-    } else if (rect.top <= viewHeight && rect.bottom >= 0) {
-      // Calculate how far the support section has entered the viewport
-      ratio = 1 - (rect.top / viewHeight);
-      ratio = Math.max(0, Math.min(1, ratio));
-    } else {
-      ratio = 1;
-    }
-
-    // 1. Overlay opacity: 1 (fully light #f2f2f2) to 0 (fully dark gradient)
-    supportSection.style.setProperty('--overlay-opacity', 1 - ratio);
-
-    // 2. Title and subtitle text color: black (0,0,0) to white (255,255,255)
-    const textVal = Math.round(0 + (255 - 0) * ratio);
-    if (supportTitle) {
-      supportTitle.style.color = `rgb(${textVal}, ${textVal}, ${textVal})`;
-    }
-
-    // 3. Button transitions:
-    // From transparent background, dark blue text (#252c66) and border (#252c66)
-    // To white background, black text (#000000) and white border (#ffffff)
-    const bgAlpha = ratio; // transparent (0) to white (1)
-    const btnColorR = Math.round(37 + (0 - 37) * ratio);
-    const btnColorG = Math.round(44 + (0 - 44) * ratio);
-    const btnColorB = Math.round(102 + (0 - 102) * ratio);
-
-    const btnBorderR = Math.round(37 + (255 - 37) * ratio);
-    const btnBorderG = Math.round(44 + (255 - 44) * ratio);
-    const btnBorderB = Math.round(102 + (255 - 102) * ratio);
-
-    if (supportBtn) {
-      supportBtn.style.backgroundColor = `rgba(255, 255, 255, ${bgAlpha})`;
-      supportBtn.style.color = `rgb(${btnColorR}, ${btnColorG}, ${btnColorB})`;
-      supportBtn.style.borderColor = `rgb(${btnBorderR}, ${btnBorderG}, ${btnBorderB})`;
-    }
-  }
-})
+}
 
 function getAbsoluteOffsetTop(element) {
   let top = 0;
@@ -231,14 +220,10 @@ function getPos() {
   }
 }
 
-function parallex() {
-  const scroll = window.scrollY || window.pageYOffset;
+function parallex(scroll) {
   const scroll2 = scroll - (posArr[3] - 1000);
   if (scroll > (posArr[3] - 1020)) {
     h4.style.left = scroll2 + 'px';
-    console.log(h4.style.left);
-    //console.log(posArr[2]); 129
-    //console.log(posArr[3]); 1683
     h5.style.left = scroll2 * 1.7 + 'px';
   }
 }

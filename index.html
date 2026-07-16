@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solva Technology</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script defer src="js/main.js"></script>
   <script src="js/anime.js"></script>
   <script src="https://kit.fontawesome.com/c0a08800fd.js" crossorigin="anonymous"></script>
@@ -107,9 +110,11 @@
         <div class="intro__container page">
           <div class="intro-detail">
             <h3>솔바테크놀러지는,</h3>
-            <p>응용 소프트웨어 솔루션 개발과 스마트 팩토리 구축 및 정보화 컨설팅,<br>
-              SI 사업으로 기업의 품질혁신 경쟁력 향상을 목표로 고객의 부가가치 창출에<br>
-              최선의 노력을 경주하고 있습니다.</p>
+            <p><b>QMS, SPC 등 품질관리 솔루션을 기반으로<br>
+                제조기업의 DX(Digital Transformation)을 지원하는 전문 기업입니다.</b><br><br>
+              응용 소프트웨어 개발, 스마트팩토리 구축, 정보화 컨설팅 및 SI 사업을 통해<br>
+              품질 데이터를 디지털 자산으로 전환하고, 기업의 품질혁신과 생산성 향상을 실현합니다.<br><br>
+              고객과 함께 지속 가능한 제조 혁신과 새로운 가치를 만들어가는 기업이 되겠습니다.</p>
           </div>
           <article><img class="intro-img" src="image/intro.jpg" alt=""><img class="white-logo"
               src="image/white_logo.png" alt=""></article>
@@ -323,62 +328,25 @@
             </div>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           </article>
-          <article>
-            <div class="img-wrap">
-              <img src="./image/news4.jpg" alt="">
-            </div>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </article>
+
         </section>
       </div>
     </section>
-
-    <section class="partner">
-      <h2 class="title">Our Partener Company</h2>
-      <!-- 주요 파트너사 20사 -->
-      <div class="partner__container" onClick="location.href='http://www.solva.co.kr/Company_Dev/Partner.aspx'">>
-        <img src="image/1.png" alt="partner company1">
-        <img src="image/2.png" alt="partner company2">
-        <img src="image/3.png" alt="partner company3">
-        <img src="image/4.png" alt="partner company4">
-        <img src="image/5.png" alt="partner company5">
-        <img src="image/6.png" alt="partner company6">
-        <img src="image/7.png" alt="partner company7">
-        <img src="image/8.png" alt="partner company8">
-        <img src="image/9.png" alt="partner company9">
-        <img src="image/10.png" alt="partner company10">
-        <img src="image/11.png" alt="partner company11">
-        <img src="image/12.png" alt="partner company12">
-        <img src="image/13.png" alt="partner company13">
-        <img src="image/14.png" alt="partner company14">
-        <img src="image/15.png" alt="partner company15">
-        <img src="image/16.png" alt="partner company16">
-        <img src="image/17.png" alt="partner company17">
-        <img src="image/18.png" alt="partner company18">
-        <img src="image/19.png" alt="partner company19">
-        <img src="image/20.png" alt="partner company20">
-      </div>
-      <div class="partner__container second" onClick="location.href='http://www.solva.co.kr/Company_Dev/Partner.aspx'">>
-        <img src="image/1.png" alt="partner company1">
-        <img src="image/2.png" alt="partner company2">
-        <img src="image/3.png" alt="partner company3">
-        <img src="image/4.png" alt="partner company4">
-        <img src="image/5.png" alt="partner company5">
-        <img src="image/6.png" alt="partner company6">
-        <img src="image/7.png" alt="partner company7">
-        <img src="image/8.png" alt="partner company8">
-        <img src="image/9.png" alt="partner company9">
-        <img src="image/10.png" alt="partner company10">
-        <img src="image/11.png" alt="partner company11">
-        <img src="image/12.png" alt="partner company12">
-        <img src="image/13.png" alt="partner company13">
-        <img src="image/14.png" alt="partner company14">
-        <img src="image/15.png" alt="partner company15">
-        <img src="image/16.png" alt="partner company16">
-        <img src="image/17.png" alt="partner company17">
-        <img src="image/18.png" alt="partner company18">
-        <img src="image/19.png" alt="partner company19">
-        <img src="image/20.png" alt="partner company20">
+    <section class="clients">
+      <div class="clients-inner">
+        <h2 class="title page">Our Partners</h2>
+          <div class="tab-menu">
+            <p class="tab-selected">일반기업</p>
+            <ul>
+              <li><button type="button" class="active" data-tab="general">일반기업</button></li>
+              <li><button type="button" data-tab="financial">금융기업</button></li>
+              <li><button type="button" data-tab="manufacturing">제조</button></li>
+              <li><button type="button" data-tab="public">공공/교육기관</button></li>
+              <li><button type="button" data-tab="construction">건설</button></li>
+            </ul>
+          </div>
+          <div class="client-logos" id="client-logos">
+          </div>
       </div>
     </section>
 
@@ -404,6 +372,159 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Client logos data
+      const logoList = [
+        { category: 'general', h3: 'General Business', logos1: [1, 2, 3, 4, 5, 6, 7], logos2: [8, 9, 10, 11, 12, 13, 14] },
+        { category: 'financial', h3: 'Financial institutions', logos1: [15, 16, 17, 18, 19, 20], logos2: [1, 3, 5, 7, 9, 11] },
+        { category: 'manufacturing', h3: 'Manufacturing', logos1: [12, 14, 16, 18, 20, 2], logos2: [4, 6, 8, 10, 13, 15] },
+        { category: 'public', h3: 'Public/Educational', logos1: [17, 19, 2, 4, 6, 8], logos2: [10, 12, 14, 16, 18, 20] },
+        { category: 'construction', h3: 'Construction', logos1: [1, 5, 9, 13, 17, 3], logos2: [2, 6, 10, 14, 18, 4] }
+      ];
+
+      // Dynamically generate logos
+      const container = document.querySelector('#client-logos');
+      if (container) {
+        logoList.forEach((list, index) => {
+          const div = document.createElement('div');
+          div.className = `tab-cont-${list.category} tab-cont`;
+          if (index === 0) div.classList.add('active');
+
+          const h3 = document.createElement('h3');
+          h3.textContent = list.h3;
+          div.appendChild(h3);
+
+          const ul1 = document.createElement('ul');
+          list.logos1.forEach(logoNum => {
+            ul1.innerHTML += `<li><img src="image/${logoNum}.png" alt="Partner ${logoNum}"></li>`;
+          });
+
+          const ul2 = document.createElement('ul');
+          list.logos2.forEach(logoNum => {
+            ul2.innerHTML += `<li><img src="image/${logoNum}.png" alt="Partner ${logoNum}"></li>`;
+          });
+
+          div.appendChild(ul1);
+          div.appendChild(ul2);
+          container.appendChild(div);
+        });
+      }
+
+      // Tab Menu functionality
+      const tabButtons = document.querySelectorAll('.tab-menu button');
+      const tabSelectedText = document.querySelector('.tab-selected');
+      const tabMenuUl = document.querySelector('.tab-menu ul');
+
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+          const tab = this.getAttribute('data-tab');
+
+          tabButtons.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+
+          if (tabSelectedText) {
+            tabSelectedText.textContent = this.textContent;
+            tabSelectedText.classList.remove('active');
+          }
+
+          if (tabMenuUl && window.innerWidth <= 768) {
+            tabMenuUl.style.display = 'none';
+          }
+
+          document.querySelectorAll('.client-logos .tab-cont').forEach(cont => {
+            cont.classList.remove('active');
+          });
+          const targetCont = document.querySelector(`.client-logos .tab-cont-${tab}`);
+          if (targetCont) {
+            targetCont.classList.add('active');
+          }
+
+          // Re-initialize marquee animations on tab switch
+          setTimeout(() => {
+            playClientMarquees();
+          }, 50);
+        });
+      });
+
+      if (tabSelectedText && tabMenuUl) {
+        tabSelectedText.addEventListener('click', function () {
+          this.classList.toggle('active');
+          if (tabMenuUl.style.display === 'flex' || tabMenuUl.style.display === 'block') {
+            tabMenuUl.style.display = 'none';
+          } else {
+            tabMenuUl.style.display = 'flex';
+          }
+        });
+      }
+
+      // GSAP Marquee Animation
+      let marqueeAnims = [];
+
+      function playClientMarquees() {
+        // Kill existing marquee timelines
+        marqueeAnims.forEach(anim => anim.kill());
+        marqueeAnims = [];
+
+        // Reset list contents and layouts
+        const activeCont = document.querySelector('.client-logos .tab-cont.active');
+        if (!activeCont) return;
+
+        const marquees = activeCont.querySelectorAll("ul");
+        const GAP = window.innerWidth <= 768 ? 10 : 20;
+
+        marquees.forEach((marquee, index) => {
+          // Keep original list elements if stored
+          let originalHtml = marquee.getAttribute('data-original-html');
+          if (!originalHtml) {
+            originalHtml = marquee.innerHTML;
+            marquee.setAttribute('data-original-html', originalHtml);
+          } else {
+            marquee.innerHTML = originalHtml;
+          }
+
+          // Triplicate the content for seamless marquee looping
+          marquee.innerHTML = originalHtml + originalHtml + originalHtml;
+
+          // Calculate width and animate
+          setTimeout(() => {
+            const items = marquee.children;
+            if (items.length === 0) return;
+
+            const oneSetWidth = Array.from(items).slice(0, items.length / 3).reduce((acc, item) => acc + item.offsetWidth + GAP, 0);
+            const isReverse = index % 2 === 1;
+
+            gsap.set(marquee, { x: 0 });
+
+            const anim = gsap.to(marquee, {
+              x: isReverse ? `+=${oneSetWidth}` : `-=${oneSetWidth}`,
+              duration: oneSetWidth / 60, // Speed control (lower is faster, higher is slower)
+              ease: "none",
+              repeat: -1,
+            });
+
+            marqueeAnims.push(anim);
+
+            // Hover effect to slow down marquee
+            marquee.addEventListener("mouseenter", () => gsap.to(anim, { timeScale: 0.2, duration: 0.3 }));
+            marquee.addEventListener("mouseleave", () => gsap.to(anim, { timeScale: 1, duration: 0.3 }));
+          }, 50);
+        });
+      }
+
+      // Init marquees
+      setTimeout(playClientMarquees, 200);
+
+      // Resize handler
+      let resizeTimeout;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          playClientMarquees();
+        }, 250);
+      });
+    });
+  </script>
 </body>
 
 </html>
