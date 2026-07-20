@@ -195,26 +195,49 @@ function updateScrollAnimations(scroll) {
     }
   }
 
-  // Support 3x Sticky Scroll Background Fade Animation
-  const supportWrapper = document.querySelector('.support-scroll-wrapper');
-  if (supportWrapper && !supportWrapper.classList.contains('expanded')) {
-    const bg1 = supportWrapper.querySelector('.support-bg-1');
-    const bg2 = supportWrapper.querySelector('.support-bg-2');
-    const initialContainer = supportWrapper.querySelector('.support__container.initial-content');
+  // Support 3x Dynamic Height Expansion & Background Transition
+  const supportSec = document.querySelector('.support');
+  if (supportSec && !supportSec.classList.contains('expanded')) {
+    const rect = supportSec.getBoundingClientRect();
+    const viewHeight = cachedWindowHeight || window.innerHeight;
 
-    const wrapperTop = getAbsoluteOffsetTop(supportWrapper);
-    const totalScrollable = supportWrapper.offsetHeight - cachedWindowHeight;
-
-    let progress = 0;
-    if (totalScrollable > 0) {
-      progress = (scroll - wrapperTop) / totalScrollable;
-      progress = Math.max(0, Math.min(1, progress));
+    let ratio = 0;
+    if (rect.top > viewHeight) {
+      ratio = 0;
+    } else if (rect.top <= viewHeight && rect.bottom >= 0) {
+      ratio = 1 - (rect.top / viewHeight);
+      ratio = Math.max(0, Math.min(1, ratio));
+    } else {
+      ratio = 1;
     }
 
-    if (bg1) bg1.style.opacity = 1 - progress;
-    if (bg2) bg2.style.opacity = progress;
-    if (initialContainer) {
-      initialContainer.style.transform = `scale(${1 + progress * 0.05})`;
+    // 1. Dynamic Height Expansion from 180px to 540px (3x original height!)
+    const currentHeight = Math.round(180 + ratio * 360);
+    supportSec.style.height = `${currentHeight}px`;
+
+    // 2. Light overlay opacity: 1 (light #f2f2f2) to 0 (dark blue gradient)
+    supportSec.style.setProperty('--overlay-opacity', 1 - ratio);
+
+    // 3. Text color transition: black (0,0,0) to white (255,255,255)
+    const textVal = Math.round(0 + (255 - 0) * ratio);
+    if (supportTitle) {
+      supportTitle.style.color = `rgb(${textVal}, ${textVal}, ${textVal})`;
+    }
+
+    // 4. Button transitions
+    const bgAlpha = ratio;
+    const btnColorR = Math.round(37 + (0 - 37) * ratio);
+    const btnColorG = Math.round(44 + (0 - 44) * ratio);
+    const btnColorB = Math.round(102 + (0 - 102) * ratio);
+
+    const btnBorderR = Math.round(37 + (255 - 37) * ratio);
+    const btnBorderG = Math.round(44 + (255 - 44) * ratio);
+    const btnBorderB = Math.round(102 + (255 - 102) * ratio);
+
+    if (supportBtn) {
+      supportBtn.style.backgroundColor = `rgba(255, 255, 255, ${bgAlpha})`;
+      supportBtn.style.color = `rgb(${btnColorR}, ${btnColorG}, ${btnColorB})`;
+      supportBtn.style.borderColor = `rgb(${btnBorderR}, ${btnBorderG}, ${btnBorderB})`;
     }
   }
 }
