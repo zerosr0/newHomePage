@@ -663,26 +663,11 @@ main .support {
   transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease;
 }
 
-main .support.viewport-lock {
-  height: 100vh;
-  background: linear-gradient(135deg, #090e26 0%, #151f47 100%) !important;
-}
-
-main .support.viewport-lock::before {
-  opacity: 0 !important;
-  /* Hide scroll overlay completely */
-}
-
 main .support.expanded {
   height: auto;
   min-height: 100vh;
   align-items: flex-start;
   background: linear-gradient(135deg, #090e26 0%, #151f47 100%) !important;
-}
-
-main .support.expanded::before {
-  opacity: 0 !important;
-  /* Hide scroll overlay completely */
 }
 
 main .support::before {
@@ -1230,6 +1215,43 @@ main #visual .panel li.on .visual-txt-box .split-text .char {
   animation: text-active-animation 1.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
+main #visual .panel li .visual-txt-box .visual-sub-text {
+  font-family: "Pretendard", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-top: 25px;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Styling for light background slide (second slide) */
+main #visual .panel li.light-bg .visual-txt-box .split-text {
+  color: #000000; /* Deep Black */
+}
+
+main #visual .panel li.light-bg .visual-txt-box .visual-sub-text {
+  color: #000000; /* Deep Black */
+}
+
+/* Run animation when slider panel li gains class .on */
+main #visual .panel li.on .visual-txt-box .visual-sub-text {
+  animation: text-active-animation2 1.5s cubic-bezier(0.4, 0, 0.2, 1) 1s both;
+}
+
+@keyframes text-active-animation2 {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes text-active-animation {
   from {
     opacity: 0;
@@ -1247,13 +1269,24 @@ main #visual .panel li.on .visual-txt-box .split-text .char {
   main #visual .panel li .visual-txt-box .split-text {
     font-size: 7.2vw;
   }
+  main #visual .panel li .visual-txt-box .visual-sub-text {
+    font-size: 1.8vw;
+    margin-top: 2vw;
+  }
 }
 
 @media screen and (max-width: 768px) {
   main #visual .panel li .visual-txt-box .split-text {
     font-size: 8.5vw;
   }
+  main #visual .panel li .visual-txt-box .visual-sub-text {
+    font-size: 3.5vw;
+    margin-top: 3vw;
+    line-height: 1.4;
+    padding: 0 15px;
+  }
 }
+
 
 /* Clients Section (Rathontech Style) */
 .clients {
@@ -1353,6 +1386,35 @@ main .clients .title.on {
   background: #009AFF;
   color: white;
   border-color: #009AFF;
+  box-shadow: 0 10px 15px -3px rgba(0, 154, 255, 0.3), 0 4px 6px -2px rgba(0, 154, 255, 0.2);
+}
+
+.clients .tab-menu .partner-more-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.clients .tab-menu .partner-more-btn .more-text {
+  display: none;
+}
+
+.clients .tab-menu .partner-more-btn:hover {
+  background: #009AFF;
+  color: white;
+  border-color: #009AFF;
+  transform: translateY(-2px) rotate(90deg);
   box-shadow: 0 10px 15px -3px rgba(0, 154, 255, 0.3), 0 4px 6px -2px rgba(0, 154, 255, 0.2);
 }
 
@@ -1480,8 +1542,36 @@ main .clients .title.on {
     border-radius: 20px 20px 0 0;
   }
 
-  .clients .tab-menu li:last-child button {
-    border-radius: 0 0 20px 20px;
+  .clients .tab-menu li:nth-last-child(2) button {
+    border-radius: 0;
+  }
+
+  .clients .tab-menu .partner-more-btn {
+    width: 100%;
+    height: 40px;
+    border-radius: 0 0 20px 20px !important;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 22px;
+    color: #4a5568;
+  }
+
+  .clients .tab-menu .partner-more-btn .more-text {
+    display: inline;
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .clients .tab-menu .partner-more-btn:hover {
+    transform: none;
+    background: #f8fafc;
+    color: #009AFF;
+    box-shadow: none;
   }
 
   .clients .tab-menu button.active {

@@ -6,7 +6,7 @@ const iconPlay = visual.querySelector('.fa-circle-play');
 const iconPause = visual.querySelector('.fa-circle-pause');
 
 const len = slides.length - 1;
-const interval = 4500;
+const interval = 5500;
 let vsNum = 0;
 let timer = null;
 
@@ -346,12 +346,12 @@ function initSplitText() {
   const splitTargets = document.querySelectorAll('.split-text');
   splitTargets.forEach(target => {
     let charIndex = 0;
-    
+
     function splitNode(node, parentNode) {
       if (node.nodeType === Node.TEXT_NODE) {
         const text = node.textContent;
         const fragment = document.createDocumentFragment();
-        
+
         // 공백을 포함하여 단어로 분리
         const words = text.split(/(\s+)/);
         words.forEach(word => {
@@ -363,7 +363,7 @@ function initSplitText() {
           } else {
             const wordSpan = document.createElement('span');
             wordSpan.className = 'word';
-            
+
             for (let char of word) {
               const charSpan = document.createElement('span');
               charSpan.className = 'char';
@@ -381,7 +381,7 @@ function initSplitText() {
         children.forEach(child => splitNode(child, node));
       }
     }
-    
+
     const initialChildren = Array.from(target.childNodes);
     initialChildren.forEach(child => splitNode(child, target));
   });

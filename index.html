@@ -80,16 +80,19 @@
         <li><img src="image/main bg1.png" alt="mainbg1">
           <div class="visual-txt-box">
             <h1 class="split-text"><b>Integrated Platform</b></h1>
+            <p class="visual-sub-text">QMS·SPC·MES부터 스마트 팩토리까지,<br>기업이 필요한 모든 제조·품질 시스템을 고객 맞춤형 통합 정보화 체계로 완성합니다.</p>
           </div>
         </li>
-        <li><img src="image/main bg2.png" alt="mainbg2">
+        <li class="light-bg"><img src="image/main bg2.png" alt="mainbg2">
           <div class="visual-txt-box">
             <h1 class="split-text"><b>Data-Driven</b> Quality Management</h1>
+            <p class="visual-sub-text">흩어져 있는 품질 데이터를 가치 있는 자산으로 구조화하고,<br>객관적인 실시간 모니터링을 통해 기업의 품질 경쟁력을 극대화합니다.</p>
           </div>
         </li>
         <li><img src="image/main bg3.png" alt="mainbg3">
           <div class="visual-txt-box">
             <h1 class="split-text"><b>Digital Transformation</b></h1>
+            <p class="visual-sub-text">AI 기술 융합과 차세대 DX(디지털 전환)를 통해 제조 산업의 새로운 미래를 열어갑니다.</p>
           </div>
         </li>
       </ul>
@@ -131,7 +134,7 @@
           <div class="gradient-bg"></div>
           <div class="service-content">
             <div class="h3-wrap">
-              <span>OUR BUSINESS</span>
+              <span>이 부분은 변경예정입니다~~~</span>
               <h2>Smart Factory &<br>Quality Management Consulting</h2>
             </div>
             <p>최신 정보화 트렌드를 반영한 스마트 팩토리(Smart Factory) 컨설팅과<br>품질관리시스템(QMS, MES, SPC) 고도화를 통해 기업의 제조 혁신을 선도하고 품질 경쟁력을
@@ -335,18 +338,23 @@
     <section class="clients">
       <div class="clients-inner">
         <h2 class="title page">Our Partners</h2>
-          <div class="tab-menu">
-            <p class="tab-selected">일반기업</p>
-            <ul>
-              <li><button type="button" class="active" data-tab="general">일반기업</button></li>
-              <li><button type="button" data-tab="financial">금융기업</button></li>
-              <li><button type="button" data-tab="manufacturing">제조</button></li>
-              <li><button type="button" data-tab="public">공공/교육기관</button></li>
-              <li><button type="button" data-tab="construction">건설</button></li>
-            </ul>
-          </div>
-          <div class="client-logos" id="client-logos">
-          </div>
+        <div class="tab-menu">
+          <p class="tab-selected">일반기업</p>
+          <ul>
+            <li><button type="button" class="active" data-tab="general">일반기업</button></li>
+            <li><button type="button" data-tab="financial">금융기업</button></li>
+            <li><button type="button" data-tab="manufacturing">제조</button></li>
+            <li><button type="button" data-tab="public">공공/교육기관</button></li>
+            <li><button type="button" data-tab="construction">건설</button></li>
+            <li>
+              <a href="http://www.solva.co.kr/Company_Dev/Partner.aspx" target="_blank" class="partner-more-btn" title="파트너사 더보기">
+                <i class="fa-solid fa-plus"></i><span class="more-text">파트너사 더보기</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="client-logos" id="client-logos">
+        </div>
       </div>
     </section>
 
@@ -470,46 +478,92 @@
         const activeCont = document.querySelector('.client-logos .tab-cont.active');
         if (!activeCont) return;
 
-        const marquees = activeCont.querySelectorAll("ul");
-        const GAP = window.innerWidth <= 768 ? 10 : 20;
+        const imgs = activeCont.querySelectorAll('img');
+        let checked = 0;
+        const totalImgs = imgs.length;
 
-        marquees.forEach((marquee, index) => {
-          // Keep original list elements if stored
-          let originalHtml = marquee.getAttribute('data-original-html');
-          if (!originalHtml) {
-            originalHtml = marquee.innerHTML;
-            marquee.setAttribute('data-original-html', originalHtml);
-          } else {
-            marquee.innerHTML = originalHtml;
-          }
+        function runMarquee() {
+          const marquees = activeCont.querySelectorAll("ul");
+          const GAP = window.innerWidth <= 768 ? 10 : 20;
 
-          // Triplicate the content for seamless marquee looping
-          marquee.innerHTML = originalHtml + originalHtml + originalHtml;
+          marquees.forEach((marquee, index) => {
+            // Keep original list elements if stored
+            let originalHtml = marquee.getAttribute('data-original-html');
+            if (!originalHtml) {
+              originalHtml = marquee.innerHTML;
+              marquee.setAttribute('data-original-html', originalHtml);
+            } else {
+              marquee.innerHTML = originalHtml;
+            }
 
-          // Calculate width and animate
-          setTimeout(() => {
-            const items = marquee.children;
-            if (items.length === 0) return;
+            // Triplicate the content for seamless marquee looping
+            marquee.innerHTML = originalHtml + originalHtml + originalHtml;
 
-            const oneSetWidth = Array.from(items).slice(0, items.length / 3).reduce((acc, item) => acc + item.offsetWidth + GAP, 0);
-            const isReverse = index % 2 === 1;
+            // Wait a frame for DOM rendering, then calculate width and animate
+            requestAnimationFrame(() => {
+              const items = marquee.children;
+              if (items.length === 0) return;
 
-            gsap.set(marquee, { x: 0 });
+              const oneSetWidth = Array.from(items).slice(0, items.length / 3).reduce((acc, item) => acc + item.offsetWidth + GAP, 0);
+              const isReverse = index % 2 === 1;
 
-            const anim = gsap.to(marquee, {
-              x: isReverse ? `+=${oneSetWidth}` : `-=${oneSetWidth}`,
-              duration: oneSetWidth / 60, // Speed control (lower is faster, higher is slower)
-              ease: "none",
-              repeat: -1,
+              if (isReverse) {
+                gsap.set(marquee, { x: -oneSetWidth });
+                const anim = gsap.to(marquee, {
+                  x: 0,
+                  duration: oneSetWidth / 60, // Speed control
+                  ease: "none",
+                  repeat: -1,
+                });
+                marqueeAnims.push(anim);
+
+                marquee.addEventListener("mouseenter", () => gsap.to(anim, { timeScale: 0.2, duration: 0.3 }));
+                marquee.addEventListener("mouseleave", () => gsap.to(anim, { timeScale: 1, duration: 0.3 }));
+              } else {
+                gsap.set(marquee, { x: 0 });
+                const anim = gsap.to(marquee, {
+                  x: -oneSetWidth,
+                  duration: oneSetWidth / 60, // Speed control
+                  ease: "none",
+                  repeat: -1,
+                });
+                marqueeAnims.push(anim);
+
+                marquee.addEventListener("mouseenter", () => gsap.to(anim, { timeScale: 0.2, duration: 0.3 }));
+                marquee.addEventListener("mouseleave", () => gsap.to(anim, { timeScale: 1, duration: 0.3 }));
+              }
             });
+          });
+        }
 
-            marqueeAnims.push(anim);
+        // Wait for all images in the active container to load completely
+        if (totalImgs === 0) {
+          runMarquee();
+          return;
+        }
 
-            // Hover effect to slow down marquee
-            marquee.addEventListener("mouseenter", () => gsap.to(anim, { timeScale: 0.2, duration: 0.3 }));
-            marquee.addEventListener("mouseleave", () => gsap.to(anim, { timeScale: 1, duration: 0.3 }));
-          }, 50);
+        imgs.forEach(img => {
+          if (img.complete) {
+            checked++;
+          } else {
+            img.addEventListener('load', () => {
+              checked++;
+              if (checked === totalImgs) {
+                runMarquee();
+              }
+            });
+            img.addEventListener('error', () => {
+              checked++;
+              if (checked === totalImgs) {
+                runMarquee();
+              }
+            });
+          }
         });
+
+        if (checked === totalImgs) {
+          runMarquee();
+        }
       }
 
       // Init marquees
