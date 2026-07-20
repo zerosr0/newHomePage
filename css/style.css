@@ -650,70 +650,107 @@ main .product .product__container>div.right .product-detail a {
   bottom: 100px;
 }
 
-main .support {
+/* Support Section 3x Sticky Scroll & Background Change */
+main .support-scroll-wrapper {
   position: relative;
   width: 100%;
-  height: 180px;
-  /* Thinner initial height */
-  background: linear-gradient(#508efe, #252c66);
+  height: 300vh;
+}
+
+main .support-scroll-wrapper.expanded {
+  height: auto;
+}
+
+main .support-sticky-inner {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease;
+  transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-main .support.expanded {
+main .support-scroll-wrapper.expanded .support-sticky-inner {
+  position: relative;
   height: auto;
   min-height: 100vh;
   align-items: flex-start;
   background: linear-gradient(135deg, #090e26 0%, #151f47 100%) !important;
 }
 
-main .support::before {
-  display: none; /* Hide scroll overlay completely */
+main .support-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  transition: opacity 0.15s ease-out;
+  pointer-events: none;
 }
 
-main .support .support__container {
+main .support-bg-1 {
+  background-image: url(../image/download_bg.jpg);
+  opacity: 1;
+}
+
+main .support-bg-2 {
+  background-image: url(../image/down_bg.jpg);
+  opacity: 0;
+}
+
+main .support-scroll-wrapper.expanded .support-bg-1,
+main .support-scroll-wrapper.expanded .support-bg-2 {
+  display: none !important;
+}
+
+main .support-scroll-wrapper .support__container {
   position: relative;
   z-index: 2;
   width: 1280px;
   margin: 0 auto;
 }
 
-main .support .support__container.initial-content {
+main .support-scroll-wrapper .support__container.initial-content {
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: transform 0.1s ease-out;
 }
 
-main .support .support__container.initial-content .support__title-wrapper {
-  color: #fff; /* Always white */
+main .support-scroll-wrapper .support__container.initial-content .support__title-wrapper {
+  color: #fff;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-main .support .support__container.initial-content .support__title-wrapper .support__title {
+main .support-scroll-wrapper .support__container.initial-content .support__title-wrapper .support__title {
   text-align: left;
-  font-size: 30px;
+  font-size: 36px;
+  font-weight: 700;
   margin-bottom: 15px;
 }
 
-main .support .support__container.initial-content a.support__btn {
+main .support-scroll-wrapper .support__container.initial-content a.support__btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
-  width: 300px;
-  height: 80px;
+  font-size: 26px;
+  font-weight: 600;
+  width: 260px;
+  height: 75px;
   border-radius: 50px;
-  border: 1px solid #fff; /* Static white border */
-  background-color: #fff; /* Static white background */
-  color: #000; /* Static black text */
+  border: 2px solid #fff;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
   cursor: pointer;
 }
 
-main .support .support__container.initial-content a.support__btn:hover {
+main .support-scroll-wrapper .support__container.initial-content a.support__btn:hover {
   background-color: transparent;
   color: #fff;
   border-color: #fff;

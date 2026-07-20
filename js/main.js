@@ -195,7 +195,28 @@ function updateScrollAnimations(scroll) {
     }
   }
 
+  // Support 3x Sticky Scroll Background Fade Animation
+  const supportWrapper = document.querySelector('.support-scroll-wrapper');
+  if (supportWrapper && !supportWrapper.classList.contains('expanded')) {
+    const bg1 = supportWrapper.querySelector('.support-bg-1');
+    const bg2 = supportWrapper.querySelector('.support-bg-2');
+    const initialContainer = supportWrapper.querySelector('.support__container.initial-content');
 
+    const wrapperTop = getAbsoluteOffsetTop(supportWrapper);
+    const totalScrollable = supportWrapper.offsetHeight - cachedWindowHeight;
+
+    let progress = 0;
+    if (totalScrollable > 0) {
+      progress = (scroll - wrapperTop) / totalScrollable;
+      progress = Math.max(0, Math.min(1, progress));
+    }
+
+    if (bg1) bg1.style.opacity = 1 - progress;
+    if (bg2) bg2.style.opacity = progress;
+    if (initialContainer) {
+      initialContainer.style.transform = `scale(${1 + progress * 0.05})`;
+    }
+  }
 }
 
 function getAbsoluteOffsetTop(element) {
@@ -311,11 +332,11 @@ if (newsFrame) {
 
 // --- Support Section Form Toggle ---
 const inquiryBtn = document.getElementById('inquiry-btn');
-const supportSec = document.querySelector('.support');
+const supportScrollWrapper = document.querySelector('.support-scroll-wrapper');
 const initialContent = document.querySelector('.support__container.initial-content');
 const expandedContent = document.querySelector('.support__container.expanded-content');
 
-if (inquiryBtn && supportSec && initialContent && expandedContent) {
+if (inquiryBtn && supportScrollWrapper && initialContent && expandedContent) {
   inquiryBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -327,7 +348,7 @@ if (inquiryBtn && supportSec && initialContent && expandedContent) {
       initialContent.style.display = 'none';
 
       // Expand the support section height
-      supportSec.classList.add('expanded');
+      supportScrollWrapper.classList.add('expanded');
 
       // Show and fade in expanded content
       expandedContent.style.display = 'flex';
