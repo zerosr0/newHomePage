@@ -195,51 +195,44 @@ function updateScrollAnimations(scroll) {
     }
   }
 
-  // Support 3x Dynamic Height Expansion & Background Transition
-  const supportSec = document.querySelector('.support');
-  if (supportSec && !supportSec.classList.contains('expanded')) {
-    const rect = supportSec.getBoundingClientRect();
-    const viewHeight = cachedWindowHeight || window.innerHeight;
-
-    let ratio = 0;
-    if (rect.top > viewHeight) {
-      ratio = 0;
-    } else if (rect.top <= viewHeight && rect.bottom >= 0) {
-      ratio = 1 - (rect.top / viewHeight);
-      ratio = Math.max(0, Math.min(1, ratio));
-    } else {
-      ratio = 1;
-    }
-
-    // 1. Dynamic Height Expansion from 180px to 540px (3x original height!)
-    const currentHeight = Math.round(180 + ratio * 360);
-    supportSec.style.height = `${currentHeight}px`;
-
-    // 2. Light overlay opacity: 1 (light #f2f2f2) to 0 (dark blue gradient)
-    supportSec.style.setProperty('--overlay-opacity', 1 - ratio);
-
-    // 3. Text color transition: black (0,0,0) to white (255,255,255)
-    const textVal = Math.round(0 + (255 - 0) * ratio);
-    if (supportTitle) {
-      supportTitle.style.color = `rgb(${textVal}, ${textVal}, ${textVal})`;
-    }
-
-    // 4. Button transitions
-    const bgAlpha = ratio;
-    const btnColorR = Math.round(37 + (0 - 37) * ratio);
-    const btnColorG = Math.round(44 + (0 - 44) * ratio);
-    const btnColorB = Math.round(102 + (0 - 102) * ratio);
-
-    const btnBorderR = Math.round(37 + (255 - 37) * ratio);
-    const btnBorderG = Math.round(44 + (255 - 44) * ratio);
-    const btnBorderB = Math.round(102 + (255 - 102) * ratio);
-
-    if (supportBtn) {
-      supportBtn.style.backgroundColor = `rgba(255, 255, 255, ${bgAlpha})`;
-      supportBtn.style.color = `rgb(${btnColorR}, ${btnColorG}, ${btnColorB})`;
-      supportBtn.style.borderColor = `rgb(${btnBorderR}, ${btnBorderG}, ${btnBorderB})`;
-    }
   }
+
+// --- GSAP ScrollTrigger for Consulting & Support Section (Rathontech Style) ---
+gsap.registerPlugin(ScrollTrigger);
+
+const consultingSec = document.querySelector('.support.consulting-section');
+const consultingBgImg = document.querySelector('.consulting-bg-img');
+const consultingContent = document.querySelector('.support.consulting-section .initial-content');
+
+let consultingScrollTrigger = null;
+
+if (consultingSec) {
+  consultingScrollTrigger = ScrollTrigger.create({
+    trigger: consultingSec,
+    start: "top top",
+    end: "+=200%", // Lock screen for 3x viewport scroll distance
+    pin: true,
+    scrub: true,
+    onUpdate: (self) => {
+      if (consultingSec.classList.contains('expanded')) return;
+
+      const progress = self.progress;
+
+      // 1. Zoom out background image smoothly as user scrolls
+      if (consultingBgImg) {
+        consultingBgImg.style.transform = `scale(${1.1 - progress * 0.1})`;
+        consultingBgImg.style.opacity = `${1 - progress * 0.2}`;
+      }
+
+      // 2. Subtle elevation of text content
+      if (consultingContent) {
+        consultingContent.style.transform = `translateY(${-25 * progress}px)`;
+      }
+    }
+  });
+
+  // Re-calculate all layout metrics whenever ScrollTrigger refreshes
+  ScrollTrigger.addEventListener("refresh", updateMetrics);
 }
 
 function getAbsoluteOffsetTop(element) {
@@ -355,13 +348,28 @@ if (newsFrame) {
 
 // --- Support Section Form Toggle ---
 const inquiryBtn = document.getElementById('inquiry-btn');
-const supportScrollWrapper = document.querySelector('.support-scroll-wrapper');
+const supportSec = document.querySelector('.support.consulting-section');
 const initialContent = document.querySelector('.support__container.initial-content');
 const expandedContent = document.querySelector('.support__container.expanded-content');
 
-if (inquiryBtn && supportScrollWrapper && initialContent && expandedContent) {
+if (inquiryBtn && supportSec && initialContent && expandedContent) {
   inquiryBtn.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // Kill ScrollTrigger pin so form expands and scrolls naturally
+    if (consultingScrollTrigger) {
+      consultingScrollTrigger.kill();
+      consultingScrollTrigger = null;
+    }
+    ScrollTrigger.refresh();
+
+    // Reset inline styles applied by GSAP pin
+    supportSec.style.position = '';
+    supportSec.style.top = '';
+    supportSec.style.left = '';
+    supportSec.style.width = '';
+    supportSec.style.height = '';
+    supportSec.style.transform = '';
 
     // Fade out initial content
     initialContent.style.transition = 'opacity 0.3s ease';
@@ -371,7 +379,7 @@ if (inquiryBtn && supportScrollWrapper && initialContent && expandedContent) {
       initialContent.style.display = 'none';
 
       // Expand the support section height
-      supportScrollWrapper.classList.add('expanded');
+      supportSec.classList.add('expanded');
 
       // Show and fade in expanded content
       expandedContent.style.display = 'flex';
