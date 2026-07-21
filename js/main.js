@@ -195,44 +195,18 @@ function updateScrollAnimations(scroll) {
     }
   }
 
-  }
+  // Rathontech Style Purple Background Transition
+  const supportSec = document.querySelector('.support.purple-transition');
+  if (supportSec && !supportSec.classList.contains('expanded')) {
+    const rect = supportSec.getBoundingClientRect();
+    const viewHeight = cachedWindowHeight || window.innerHeight;
 
-// --- GSAP ScrollTrigger for Consulting & Support Section (Rathontech Style) ---
-gsap.registerPlugin(ScrollTrigger);
-
-const consultingSec = document.querySelector('.support.consulting-section');
-const consultingBgImg = document.querySelector('.consulting-bg-img');
-const consultingContent = document.querySelector('.support.consulting-section .initial-content');
-
-let consultingScrollTrigger = null;
-
-if (consultingSec) {
-  consultingScrollTrigger = ScrollTrigger.create({
-    trigger: consultingSec,
-    start: "top top",
-    end: "+=200%", // Lock screen for 3x viewport scroll distance
-    pin: true,
-    scrub: true,
-    onUpdate: (self) => {
-      if (consultingSec.classList.contains('expanded')) return;
-
-      const progress = self.progress;
-
-      // 1. Zoom out background image smoothly as user scrolls
-      if (consultingBgImg) {
-        consultingBgImg.style.transform = `scale(${1.1 - progress * 0.1})`;
-        consultingBgImg.style.opacity = `${1 - progress * 0.2}`;
-      }
-
-      // 2. Subtle elevation of text content
-      if (consultingContent) {
-        consultingContent.style.transform = `translateY(${-25 * progress}px)`;
-      }
+    if (rect.top <= viewHeight * 0.8 && rect.bottom >= viewHeight * 0.2) {
+      supportSec.classList.add('purple-active');
+    } else {
+      supportSec.classList.remove('purple-active');
     }
-  });
-
-  // Re-calculate all layout metrics whenever ScrollTrigger refreshes
-  ScrollTrigger.addEventListener("refresh", updateMetrics);
+  }
 }
 
 function getAbsoluteOffsetTop(element) {
@@ -348,28 +322,13 @@ if (newsFrame) {
 
 // --- Support Section Form Toggle ---
 const inquiryBtn = document.getElementById('inquiry-btn');
-const supportSec = document.querySelector('.support.consulting-section');
+const supportSec = document.querySelector('.support.purple-transition');
 const initialContent = document.querySelector('.support__container.initial-content');
 const expandedContent = document.querySelector('.support__container.expanded-content');
 
 if (inquiryBtn && supportSec && initialContent && expandedContent) {
   inquiryBtn.addEventListener('click', (e) => {
     e.preventDefault();
-
-    // Kill ScrollTrigger pin so form expands and scrolls naturally
-    if (consultingScrollTrigger) {
-      consultingScrollTrigger.kill();
-      consultingScrollTrigger = null;
-    }
-    ScrollTrigger.refresh();
-
-    // Reset inline styles applied by GSAP pin
-    supportSec.style.position = '';
-    supportSec.style.top = '';
-    supportSec.style.left = '';
-    supportSec.style.width = '';
-    supportSec.style.height = '';
-    supportSec.style.transform = '';
 
     // Fade out initial content
     initialContent.style.transition = 'opacity 0.3s ease';
