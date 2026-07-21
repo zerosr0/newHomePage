@@ -195,18 +195,42 @@ function updateScrollAnimations(scroll) {
     }
   }
 
-  // Rathontech Style Purple Background Transition
-  const supportSec = document.querySelector('.support.purple-transition');
-  if (supportSec && !supportSec.classList.contains('expanded')) {
-    const rect = supportSec.getBoundingClientRect();
-    const viewHeight = cachedWindowHeight || window.innerHeight;
+// --- GSAP ScrollTrigger for Rathontech Style Pinned Purple Section ---
+gsap.registerPlugin(ScrollTrigger);
 
-    if (rect.top <= viewHeight * 0.8 && rect.bottom >= viewHeight * 0.2) {
-      supportSec.classList.add('purple-active');
-    } else {
-      supportSec.classList.remove('purple-active');
+const rathonPurpleSec = document.querySelector('.support.rathon-pinned-purple');
+const purpleBgLayer = document.querySelector('.rathon-pinned-purple .purple-bg-layer');
+
+let rathonScrollTrigger = null;
+
+if (rathonPurpleSec) {
+  rathonScrollTrigger = ScrollTrigger.create({
+    trigger: rathonPurpleSec,
+    start: "top top",
+    end: "+=200%", // Lock screen for 3x viewport scroll distance
+    pin: true,
+    scrub: true,
+    onUpdate: (self) => {
+      if (rathonPurpleSec.classList.contains('expanded')) return;
+
+      const progress = self.progress;
+
+      // Smoothly fade in purple background overlay during pin scrub
+      if (purpleBgLayer) {
+        purpleBgLayer.style.opacity = Math.min(1, progress * 2.5);
+      }
+
+      // Add active class once background is partially purple
+      if (progress > 0.15) {
+        rathonPurpleSec.classList.add('purple-active');
+      } else {
+        rathonPurpleSec.classList.remove('purple-active');
+      }
     }
-  }
+  });
+
+  // Re-calculate all layout metrics whenever ScrollTrigger refreshes
+  ScrollTrigger.addEventListener("refresh", updateMetrics);
 }
 
 function getAbsoluteOffsetTop(element) {
@@ -322,13 +346,28 @@ if (newsFrame) {
 
 // --- Support Section Form Toggle ---
 const inquiryBtn = document.getElementById('inquiry-btn');
-const supportSec = document.querySelector('.support.purple-transition');
+const supportSec = document.querySelector('.support.rathon-pinned-purple');
 const initialContent = document.querySelector('.support__container.initial-content');
 const expandedContent = document.querySelector('.support__container.expanded-content');
 
 if (inquiryBtn && supportSec && initialContent && expandedContent) {
   inquiryBtn.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // Kill ScrollTrigger pin so form expands and scrolls naturally
+    if (rathonScrollTrigger) {
+      rathonScrollTrigger.kill();
+      rathonScrollTrigger = null;
+    }
+    ScrollTrigger.refresh();
+
+    // Reset inline styles applied by GSAP pin
+    supportSec.style.position = '';
+    supportSec.style.top = '';
+    supportSec.style.left = '';
+    supportSec.style.width = '';
+    supportSec.style.height = '';
+    supportSec.style.transform = '';
 
     // Fade out initial content
     initialContent.style.transition = 'opacity 0.3s ease';
