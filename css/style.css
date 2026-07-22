@@ -657,6 +657,7 @@ main .product .product__container>div.right .product-detail a {
 main .support.solva-pinned-purple {
   position: relative;
   width: 100%;
+  height: 100vh;
   padding: 140px 0;
   display: flex;
   align-items: center;
