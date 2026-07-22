@@ -235,15 +235,17 @@ function updateScrollAnimations(scroll) {
   }
 }
 
+let purpleScrollTrigger;
+
 // --- Unified GSAP ScrollTrigger for Service Card & Support Section (.service + .support) ---
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 
   const serviceSec = document.querySelector('.service');
-  const supportSec = document.querySelector('.support.rathon-pinned-purple');
+  const supportSec = document.querySelector('.support.solva-pinned-purple');
 
   if (serviceSec && supportSec) {
-    ScrollTrigger.create({
+    purpleScrollTrigger = ScrollTrigger.create({
       trigger: serviceSec,
       endTrigger: supportSec,
       start: "top center",   // .service 카드가 화면 중앙에 올 때 통합 다크 배경 시작
@@ -273,7 +275,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
 
   // --- Support Section Form Toggle ---
   const inquiryBtn = document.getElementById('inquiry-btn');
-  const supportSec = document.querySelector('.support.rathon-pinned-purple');
+  const supportSec = document.querySelector('.support.solva-pinned-purple');
   const initialContent = document.querySelector('.support__container.initial-content');
   const expandedContent = document.querySelector('.support__container.expanded-content');
 
