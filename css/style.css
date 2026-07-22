@@ -1549,6 +1549,14 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     display: none !important;
   }
 
+  /* 모바일 메인 슬라이드 컨트롤 재생/일시정지 버튼 가로 중앙 정렬 */
+  main #visual .icons {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: 5% !important;
+  }
+
   /* GNB 모바일 전체폭 메뉴판 변환 */
   header .header__container .header-top #gnb {
     display: none;
@@ -1823,9 +1831,23 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
 
   main .news .news__container .news-frame {
     width: 100% !important;
-    overflow-x: auto !important;
-    padding-bottom: 20px;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column !important;
+    align-items: center !important;
+    overflow-x: visible !important;
+    gap: 40px !important;
+    padding-bottom: 0;
+  }
+
+  main .news .news__container .news-frame article {
+    width: 100% !important;
+    max-width: 500px !important;
+    flex-shrink: 1 !important;
+  }
+
+  main .news .news__container .news-frame article .img-wrap {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
   }
 
   /* 1000px 이하 info 반응형 (2열 2행 격자 배치) */
@@ -1934,12 +1956,14 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
 
   /* 768px news 반응형 */
   main .news .news__container .news-frame article {
-    width: 290px !important;
+    width: 100% !important;
+    max-width: 420px !important;
   }
 
   main .news .news__container .news-frame article .img-wrap {
     width: 100% !important;
-    height: 160px !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
     margin-bottom: 15px;
   }
 
