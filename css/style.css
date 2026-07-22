@@ -2256,6 +2256,14 @@ main .clients .title.on {
     box-shadow: none;
   }
 
+  .clients .tab-menu button:hover {
+    transform: none;
+    background: #f8fafc;
+    color: #009AFF;
+    box-shadow: none;
+    border-color: transparent;
+  }
+
   .clients .tab-menu button.active {
     background: #F1F5F8;
     color: #333;
