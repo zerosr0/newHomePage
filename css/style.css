@@ -1223,6 +1223,35 @@ main .partner:hover .partner__container {
   cursor: pointer;
 }
 
+footer {
+  width: 100%;
+  background-color: #2c2d30;
+  color: #a4a5a7;
+  padding: 50px 0;
+  font-family: "Wanted Sans Variable", "Pretendard", sans-serif;
+}
+
+footer .footer__container {
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+footer .footer__container p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer .footer__container .copyright {
+  margin-top: 20px;
+  color: #727376;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
 main .info {
   position: relative;
   background: url(../image/down_bg.jpg) fixed no-repeat center;
@@ -1504,6 +1533,13 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     padding: 0 40px;
     box-sizing: border-box;
     gap: 20px;
+  }
+
+  /* 1280px footer 반응형 */
+  footer .footer__container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
   }
 }
 
@@ -1828,6 +1864,11 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     width: 100% !important;
     box-sizing: border-box;
   }
+
+  /* 1000px 이하 footer 반응형 */
+  footer .footer__container {
+    padding: 0 25px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1875,6 +1916,25 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   main .info .info__container {
     grid-template-columns: 1fr;
     max-width: 480px !important;
+  }
+
+  /* 768px 이하 footer 반응형 (중앙 정렬 및 폰트 크기 축소) */
+  footer {
+    padding: 40px 0;
+  }
+
+  footer .footer__container {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  footer .footer__container p {
+    font-size: 13px;
+  }
+
+  footer .footer__container .copyright {
+    font-size: 11px;
+    margin-top: 15px;
   }
 }
 
