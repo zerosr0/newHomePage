@@ -1544,6 +1544,11 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     height: 51px;
   }
 
+  /* 모바일 메인 슬라이드 인디케이터 숨김 */
+  main #visual .btns {
+    display: none !important;
+  }
+
   /* GNB 모바일 전체폭 메뉴판 변환 */
   header .header__container .header-top #gnb {
     display: none;
