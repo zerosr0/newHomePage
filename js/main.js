@@ -283,10 +283,6 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     inquiryBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      if (purpleScrollTrigger) {
-        purpleScrollTrigger.kill();
-        purpleScrollTrigger = null;
-      }
       ScrollTrigger.refresh();
 
       supportSec.style.position = '';
