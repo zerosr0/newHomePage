@@ -671,7 +671,7 @@ main .support.solva-pinned-purple .purple-bg-layer {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(135deg, #330b9a 0%, #1a0554 100%);
+  background: #011060;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease-in-out;
@@ -776,7 +776,7 @@ main .support.solva-pinned-purple.expanded {
   min-height: 100vh;
   align-items: flex-start;
   padding: 80px 0;
-  background: linear-gradient(135deg, #1a0554 0%, #0d002e 100%) !important;
+  background: #011060 !important;
 }
 
 main .support.solva-pinned-purple.expanded .purple-bg-layer {
@@ -1508,6 +1508,15 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     max-width: 100%;
     padding: 0 40px;
   }
+
+  /* 1280px support expanded 반응형 */
+  main .support .support__container.expanded-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    gap: 40px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -1841,6 +1850,52 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   footer .footer__container {
     padding: 0 25px;
   }
+
+  /* 1000px support expanded 반응형 (세로 1열 정렬) */
+  main .support.solva-pinned-purple.expanded {
+    padding: 60px 0;
+  }
+
+  main .support .support__container.expanded-content {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 680px !important;
+    padding: 0 20px;
+    gap: 50px !important;
+    box-sizing: border-box;
+    margin: 0 auto !important;
+  }
+
+  main .support .support__container.expanded-content .support__info-col {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  main .support .support__container.expanded-content .support__info-col h2 {
+    font-size: 34px !important;
+    margin-bottom: 15px;
+  }
+
+  main .support .support__container.expanded-content .support__info-col .support__info-sub {
+    font-size: 16px !important;
+    margin-bottom: 30px;
+  }
+
+  main .support .support__container.expanded-content .support__info-col .support__bullets {
+    align-items: center;
+    gap: 16px;
+  }
+
+  main .support .support__container.expanded-content .support__info-col .support__bullets li {
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+  }
+
+  main .support .support__container.expanded-content .support__form {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1910,6 +1965,16 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   footer .footer__container .copyright {
     font-size: 11px;
     margin-top: 15px;
+  }
+
+  /* 768px support expanded 반응형 (입력 필드 1열 배치) */
+  main .support .support__container.expanded-content .support__form .form-row {
+    flex-direction: column !important;
+    gap: 20px;
+  }
+
+  main .support .support__container.expanded-content .support__info-col h2 {
+    font-size: 28px !important;
   }
 }
 
