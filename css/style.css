@@ -1078,7 +1078,7 @@ main .news .news__container {
 main .news .news__container .news-btns {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   width: 25%;
 }
@@ -1087,15 +1087,16 @@ main .news .news__container .news-btns .news-btns-text-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
   width: 100%;
 }
 
 main .news .news__container .news-btns .news-btns-title {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 16px;
+  font-family: 'Pretendard';
+  font-weight: 600;
   color: #333;
   margin-bottom: 20px;
-  text-align: center;
   line-height: 1.4;
   word-break: keep-all;
 }
@@ -1495,6 +1496,15 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     padding: 0 40px;
     box-sizing: border-box;
   }
+
+  /* 1280px info 반응형 */
+  main .info .info__container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+    gap: 20px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -1645,7 +1655,8 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   }
 
   main .intro .intro__container .intro-detail p br {
-    display: none; /* 모바일 자동줄바꿈 보장 */
+    display: none;
+    /* 모바일 자동줄바꿈 보장 */
   }
 
   main .intro .intro__container article {
@@ -1776,6 +1787,7 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     align-items: flex-start;
     width: auto;
     flex: 1;
+    gap: 0;
   }
 
   main .news .news__container .news-btns .news-btns-title {
@@ -1797,6 +1809,24 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     overflow-x: auto !important;
     padding-bottom: 20px;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* 1000px 이하 info 반응형 (2열 2행 격자 배치) */
+  main .info .info__container {
+    width: 100% !important;
+    max-width: 680px !important;
+    height: auto !important;
+    padding: 60px 20px !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px !important;
+    margin: 30px auto 0 !important;
+    box-sizing: border-box;
+  }
+
+  main .info .info__container a {
+    width: 100% !important;
+    box-sizing: border-box;
   }
 }
 
@@ -1839,6 +1869,12 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     width: 100% !important;
     height: 160px !important;
     margin-bottom: 15px;
+  }
+
+  /* 768px 이하 info 반응형 (1열 세로형 배치) */
+  main .info .info__container {
+    grid-template-columns: 1fr;
+    max-width: 480px !important;
   }
 }
 
