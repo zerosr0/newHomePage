@@ -239,6 +239,7 @@ main #visual .icons i:hover {
 main .intro {
   position: relative;
   height: 180vh;
+  background-color: #F1F5F8;
 }
 
 main .intro .intro-sticky-wrapper {
@@ -322,7 +323,7 @@ main .intro h5 {
   display: block;
   position: absolute;
   font-size: 180px;
-  color: rgba(238, 238, 238, 0.5);
+  color: #fff;
   font-family: "Wanted Sans Variable", sans-serif;
   letter-spacing: -8px;
   z-index: -1;
@@ -338,18 +339,42 @@ main .intro h5 {
   left: 0;
 }
 
+body {
+  transition: background-color 0.4s ease-in-out;
+}
+
+body.dark-background {
+  background-color: #011060 !important;
+}
+
 main .service {
   position: relative;
-  background-color: #f2f2f2;
-  padding: 100px 0;
+  width: 100%;
+  padding: 120px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
+main .service::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(41, 0, 148, 0.5) 0%, rgba(1, 16, 96, 0) 70%);
+  filter: blur(50px);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+body.dark-background main .service::before {
+  opacity: 1;
+}
+
 main .service .service-inner {
   width: 100%;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -363,8 +388,8 @@ main .service .service-wrapper {
   align-items: center;
   justify-content: center;
   width: 92%;
-  max-width: 1280px;
-  height: 600px;
+  max-width: 1320px;
+  height: 636px;
   padding: 0 40px;
   margin: 0 auto;
   border-radius: 1.5rem;
@@ -372,10 +397,10 @@ main .service .service-wrapper {
   background-clip: padding-box;
   overflow: hidden;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  transition: opacity 1.5s, transform 1.5s;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.8s ease, transform 0.8s ease;
   opacity: 0;
-  transform: translateY(80px);
+  transform: translateY(60px);
 }
 
 main .service .service-wrapper.on {
@@ -654,13 +679,13 @@ main .product .product__container>div.right .product-detail a {
 main .support.rathon-pinned-purple {
   position: relative;
   width: 100%;
-  height: 100vh;
+  padding: 140px 0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: #ffffff;
-  transition: background-color 0.5s ease;
+  background-color: transparent;
+  transition: background-color 0.4s ease-in-out;
 }
 
 main .support.rathon-pinned-purple .purple-bg-layer {
@@ -670,7 +695,7 @@ main .support.rathon-pinned-purple .purple-bg-layer {
   background: linear-gradient(135deg, #330b9a 0%, #1a0554 100%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.1s linear;
+  transition: opacity 0.5s ease-in-out;
 }
 
 main .support.rathon-pinned-purple .support__container {
@@ -1038,7 +1063,7 @@ main .news .news__container {
   display: flex;
 }
 
-main .news .news__container::before {
+/* main .news .news__container::before {
   display: block;
   content: "";
   position: absolute;
@@ -1048,7 +1073,7 @@ main .news .news__container::before {
   width: 43%;
   height: 700px;
   background-color: #f2f2f2;
-}
+} */
 
 main .news .news__container .news-btns {
   display: flex;
@@ -1167,12 +1192,26 @@ main .partner:hover .partner__container {
 }
 
 main .info {
+  position: relative;
   background: url(../image/down_bg.jpg) fixed no-repeat center;
   overflow: hidden;
 }
 
+main .info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  /* 튀는 색감을 억제하기 위한 어두운 오버레이 필터 */
+  z-index: 1;
+}
+
 main .info .info__container {
   position: relative;
+  z-index: 2;
   width: 1280px;
   height: 350px;
   margin: 50px auto 0;
@@ -1284,15 +1323,34 @@ main #visual .panel li .visual-txt-box .visual-sub-text {
   letter-spacing: -0.01em;
   opacity: 0;
   transform: translateY(30px);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 /* Styling for light background slide (second slide) */
 main #visual .panel li.light-bg .visual-txt-box .split-text {
-  color: #000000; /* Deep Black */
+  color: #000000;
+  /* Deep Black */
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.65);
 }
 
 main #visual .panel li.light-bg .visual-txt-box .visual-sub-text {
-  color: #000000; /* Deep Black */
+  color: #000000;
+  /* Deep Black */
+  font-weight: 500;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 12px #ffffff,
+    0 0 25px rgba(255, 255, 255, 0.95),
+    0 0 40px rgba(255, 255, 255, 0.9);
+}
+
+main #visual .panel li.light-bg .visual-txt-box .visual-sub-text .second-line {
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff,
+    0 0 35px rgba(255, 255, 255, 0.95),
+    0 0 50px rgba(255, 255, 255, 0.95);
 }
 
 /* Run animation when slider panel li gains class .on */
@@ -1305,6 +1363,7 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1323,14 +1382,373 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   }
 }
 
+/* PC/Tablet mobile menu button - hidden by default */
+.m-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #333333;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1000;
+  outline: none;
+  transition: transform 0.2s, color 0.2s;
+  padding: 5px;
+}
+
+.m-menu-btn:hover {
+  color: #426eb5;
+}
+
 /* Responsive Font Sizes */
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1500px) {
   main #visual .panel li .visual-txt-box .split-text {
-    font-size: 7.2vw;
+    font-size: 60px;
   }
+
   main #visual .panel li .visual-txt-box .visual-sub-text {
-    font-size: 1.8vw;
-    margin-top: 2vw;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  header .header__container .header-top {
+    width: 960px;
+  }
+
+  header .header__container .header-top #gnb {
+    width: 60%;
+  }
+
+  /* 1280px intro 반응형 */
+  main .intro .intro__container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+    gap: 30px;
+  }
+
+  main .intro .intro__container .intro-detail {
+    width: 50%;
+  }
+
+  main .intro .intro__container article {
+    position: relative !important;
+    width: 45% !important;
+    height: 300px !important;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  /* 1280px product 반응형 */
+  main .product .product__container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+
+  main .product .product__container>div .product-detail {
+    left: 45%;
+    width: 50%;
+  }
+
+  main .product .product__container>div.right .product-detail {
+    left: 5%;
+    width: 50%;
+  }
+
+  /* 1280px news 반응형 */
+  main .news .news__container {
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  header.on {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+  }
+
+  header:hover {
+    height: auto !important;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+
+  header .header__container .header-top {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 25px;
+    box-sizing: border-box;
+    margin: 15px auto !important;
+    align-items: center;
+  }
+
+  /* 로고 크기 80%로 축소 (100px * 64px -> 80px * 51px) */
+  header .header__container .header-top .comp-logo {
+    width: 80px;
+    height: 51px;
+  }
+
+  /* GNB 모바일 전체폭 메뉴판 변환 */
+  header .header__container .header-top #gnb {
+    display: none;
+    position: absolute;
+    top: 66px;
+    left: 0;
+    width: 100% !important;
+    background-color: rgba(255, 255, 255, 0.98);
+    border-top: 1px solid #eeeeee;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    padding: 15px 0;
+    gap: 0;
+    margin: 0;
+    z-index: 999;
+  }
+
+  /* 모바일 활성화 시 메뉴 노출 */
+  header .header__container .header-top #gnb.on {
+    display: flex;
+  }
+
+  /* 모바일 대메뉴 리스트 항목 */
+  header .header__container .header-top #gnb li {
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  header .header__container .header-top #gnb li:last-child {
+    border-bottom: none;
+  }
+
+  /* 대메뉴 링크 */
+  header .header__container .header-top #gnb li>a {
+    display: block;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #222222;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+  }
+
+  header .header__container .header-top #gnb li>a:hover {
+    background-color: #f8fafc;
+    color: #426eb5;
+  }
+
+  /* 모바일 서브메뉴 디자인 - 대메뉴에 호버/활성화 시 부드럽게 노출 */
+  header:hover .header__container .header-top #gnb li .submenu {
+    display: none;
+  }
+
+  header .header__container .header-top #gnb li .submenu {
+    display: none !important;
+    background-color: #f8fafc;
+    padding: 10px 0 10px 45px;
+    flex-direction: column !important;
+    gap: 8px;
+    box-sizing: border-box;
+  }
+
+  header .header__container .header-top #gnb li:hover .submenu {
+    display: flex !important;
+  }
+
+  header .header__container .header-top #gnb li .submenu a {
+    padding: 6px 0;
+    font-size: 14px;
+    color: #555555;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  header .header__container .header-top #gnb li .submenu a:hover {
+    color: #426eb5;
+  }
+
+  /* 모바일 햄버거 버튼 표시 */
+  .m-menu-btn {
+    display: block;
+  }
+
+  /* 1000px 이하 intro 모바일 세로 배치 */
+  main .intro {
+    height: auto !important;
+    padding: 80px 0;
+  }
+
+  main .intro .intro-sticky-wrapper {
+    position: relative !important;
+    height: auto !important;
+    top: auto !important;
+    overflow: visible !important;
+  }
+
+  main .intro .title {
+    margin: 0 auto 30px !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  main .intro .intro__container {
+    flex-direction: column-reverse !important;
+    height: auto !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 680px !important;
+  }
+
+  main .intro .intro__container .intro-detail {
+    width: 100% !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    text-align: center;
+  }
+
+  main .intro .intro__container .intro-detail p br {
+    display: none; /* 모바일 자동줄바꿈 보장 */
+  }
+
+  main .intro .intro__container article {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 320px !important;
+    margin: 0 auto;
+    border-radius: 12px;
+    left: auto !important;
+    top: auto !important;
+  }
+
+  main .intro .intro__container article .white-logo {
+    opacity: 1 !important;
+  }
+
+  /* 텍스트 장식물 숨김 */
+  main .intro h4,
+  main .intro h5 {
+    display: none !important;
+  }
+
+  /* 1000px 이하 product 반응형 (1열 세로형 배치) */
+  main .product .title {
+    margin: 100px auto 50px;
+  }
+
+  main .product .product__container {
+    width: 100% !important;
+    max-width: 680px !important;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  main .product .product__container>div {
+    transform: none !important;
+    opacity: 1 !important;
+    margin-bottom: 50px;
+  }
+
+  main .product .product__container>div article {
+    width: 100% !important;
+    float: none !important;
+    height: 280px;
+    margin-bottom: 20px;
+  }
+
+  main .product .product__container>div.right article {
+    float: none !important;
+  }
+
+  main .product .product__container>div .product-detail {
+    position: relative !important;
+    width: 100% !important;
+    left: auto !important;
+    top: auto !important;
+    text-align: center !important;
+    height: auto !important;
+    margin-bottom: 10px;
+  }
+
+  main .product .product__container>div.right .product-detail {
+    position: relative !important;
+    width: 100% !important;
+    left: auto !important;
+    top: auto !important;
+    text-align: center !important;
+    height: auto !important;
+  }
+
+  main .product .product__container>div .product-detail .product-desc {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    margin-bottom: 20px;
+  }
+
+  main .product .product__container>div.right .product-detail .product-desc {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    margin-bottom: 20px;
+  }
+
+  main .product .product__container>div .product-detail a {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    margin: 0 auto;
+    display: inline-flex !important;
+  }
+
+  main .product .product__container>div.right .product-detail a {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    margin: 0 auto;
+    display: inline-flex !important;
+  }
+
+  /* 1000px news 반응형 */
+  main .news .title {
+    margin: 80px auto 40px;
+  }
+
+  main .news .news__container {
+    flex-direction: column !important;
+    padding: 0 20px;
+    margin-bottom: 60px;
+    gap: 35px;
+  }
+
+  main .news .news__container .news-btns {
+    width: 100% !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 10px;
+  }
+
+  main .news .news__container .news-btns .news-btns-title {
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    font-size: 20px;
+  }
+
+  main .news .news__container .news-frame {
+    width: 100% !important;
+    overflow-x: auto !important;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -1338,11 +1756,41 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   main #visual .panel li .visual-txt-box .split-text {
     font-size: 8.5vw;
   }
+
   main #visual .panel li .visual-txt-box .visual-sub-text {
     font-size: 3.5vw;
     margin-top: 3vw;
     line-height: 1.4;
     padding: 0 15px;
+  }
+
+  /* 768px 이하 intro 조정 */
+  main .intro {
+    padding: 60px 0;
+  }
+
+  main .intro .intro__container {
+    padding: 0 20px;
+  }
+
+  main .intro .intro__container article {
+    height: 220px !important;
+  }
+
+  /* 768px product 반응형 */
+  main .product .product__container>div article {
+    height: 200px;
+  }
+
+  /* 768px news 반응형 */
+  main .news .news__container .news-frame article {
+    width: 290px !important;
+  }
+
+  main .news .news__container .news-frame article .img-wrap {
+    width: 100% !important;
+    height: 160px !important;
+    margin-bottom: 15px;
   }
 }
 
