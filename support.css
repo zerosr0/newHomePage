@@ -1063,3 +1063,17 @@
 .service-wrapper .consulting-intro {
   padding-top: 40px;
 }
+
+/* 다크 모드 활성화 시 서비스 인트로 텍스트 색상 흰색 반전 */
+body.dark-background .intro-title {
+  color: #ffffff !important;
+}
+
+body.dark-background .intro-desc {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.dark-background .intro-badge {
+  color: #8797ff !important;
+  background-color: rgba(135, 151, 255, 0.1) !important;
+}

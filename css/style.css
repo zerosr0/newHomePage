@@ -561,6 +561,13 @@ main .service .btn-link:hover::before {
 
 main .product {
   margin-bottom: 80px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+body.dark-background main .product {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 main .product .title {
@@ -1116,7 +1123,7 @@ main .news {
 
 main .news .title {
   text-align: center;
-  margin: 100px auto;
+  margin: 200px auto 100px;
   opacity: 0;
   transform: translateY(-80px);
   transition: 1s;
@@ -1129,7 +1136,7 @@ main .news .title.on {
 
 main .news .news__container {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
   display: flex;
 }
 
@@ -2041,7 +2048,8 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background-color: rgba(1, 16, 96, 0.6); /* 브랜드 다크 네이비 테마의 반투명화 */
+    background-color: rgba(1, 16, 96, 0.6);
+    /* 브랜드 다크 네이비 테마의 반투명화 */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.2);
