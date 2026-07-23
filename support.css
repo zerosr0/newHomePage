@@ -1052,3 +1052,14 @@
     font-size: 19px;
   }
 }
+
+/* 메인페이지 내부에 임베딩될 때의 스타일 최적화 */
+.service-wrapper .consulting-container {
+  padding-top: 0;
+  background-color: transparent;
+  width: 100%;
+}
+
+.service-wrapper .consulting-intro {
+  padding-top: 40px;
+}

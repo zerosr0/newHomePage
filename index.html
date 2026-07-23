@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solva Technology</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="support.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -188,27 +189,309 @@
       </div>
     </section>
 
-    <section class="service">
+    <section class="service" id="service-section">
       <div class="service-inner">
         <div class="service-wrapper page">
-          <!-- 그라데이션 배경 -->
-          <div class="gradient-bg"></div>
-          <div class="service-content">
-            <div class="h3-wrap">
-              <span>SOLVA SOLUTIONS & CONSULTING</span>
-              <h2>Smart Factory &<br>Quality Management Consulting</h2>
+          <div class="consulting-container">
+            
+            <!-- 1. 고민 헤드라인 섹션 -->
+            <div class="consulting-intro">
+              <span class="intro-badge">
+                <i class="fa-solid fa-quote-left"></i> 혹시 이런 고민을 하고 계신가요? <i class="fa-solid fa-quote-right"></i>
+              </span>
+              <h1 class="intro-title">품질 관리, 아직도 이렇게 하고 계신가요?</h1>
+              <p class="intro-desc">많은 기업들이 공통적으로 겪고 있는 품질 관리의 어려움,<br><strong>Solva Technology</strong>가 해결해 드립니다.</p>
             </div>
-            <p>최신 정보화 트렌드를 반영한 스마트 팩토리(Smart Factory) 컨설팅과<br>품질관리시스템(QMS, MES, SPC) 고도화를 통해 기업의 제조 혁신을 선도하고 품질 경쟁력을
-              극대화합니다.</p>
-            <a href="support.html" class="btn-link">
-              <span>View More</span>
-            </a>
+
+            <!-- 2. QA 5대 고민 카드 리스트 섹션 -->
+            <div class="qa-cards-section">
+              <div class="qa-cards-wrapper">
+                
+                <!-- CARD 01 -->
+                <div class="qa-card">
+                  <!-- 좌측 고민 영역 -->
+                  <div class="card-left">
+                    <span class="card-num num-blue">01</span>
+                    <div class="card-text-wrap">
+                      <h2 class="card-title">전사 품질 현황,<br>한눈에 보이시나요?</h2>
+                      <p class="card-desc">여러 시스템에 흩어진 데이터를 취합하는데 시간이 오래 걸립니다.</p>
+                    </div>
+                  </div>
+                  <!-- 중앙 그래픽/차트 영역 -->
+                  <div class="card-center">
+                    <div class="chart-illustration">
+                      <div class="ill-dashboard">
+                        <div class="ill-db-bar-wrap">
+                          <div class="ill-db-bar" style="height: 40%;"></div>
+                          <div class="ill-db-bar" style="height: 70%;"></div>
+                          <div class="ill-db-bar" style="height: 50%;"></div>
+                          <div class="ill-db-bar" style="height: 85%;"></div>
+                        </div>
+                        <div class="ill-db-line-wrap">
+                          <svg class="ill-line-svg" viewBox="0 0 100 40">
+                            <path d="M 0 30 Q 25 10 50 25 T 100 10" fill="none" stroke="#0066ff" stroke-width="2"/>
+                            <circle cx="100" cy="10" r="3" fill="#0066ff" />
+                          </svg>
+                        </div>
+                        <div class="ill-db-circle-wrap">
+                          <div class="ill-db-circle"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 우측 해결책 영역 -->
+                  <div class="card-right bg-light-blue">
+                    <div class="solution-wrap">
+                      <div class="sol-title-wrap">
+                        <i class="fa-solid fa-circle-check icon-blue"></i>
+                        <span class="sol-title">실시간 통합 대시보드</span>
+                      </div>
+                      <p class="sol-desc">전사 품질 현황을<br>한눈에 확인</p>
+                      <a href="#support" class="sol-btn border-blue">자세히 보기 <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 02 -->
+                <div class="qa-card">
+                  <!-- 좌측 고민 영역 -->
+                  <div class="card-left">
+                    <span class="card-num num-red">02</span>
+                    <div class="card-text-wrap">
+                      <h2 class="card-title">문제가 터진 후에야<br>알고 계신가요?</h2>
+                      <p class="card-desc">이상 징후를 조기에 감지하지 못해 불량이 발생한 후에야 대응합니다.</p>
+                    </div>
+                  </div>
+                  <!-- 중앙 그래픽/차트 영역 -->
+                  <div class="card-center">
+                    <div class="chart-illustration">
+                      <div class="ill-alert-spc">
+                        <svg class="ill-spc-svg" viewBox="0 0 120 50">
+                          <line x1="0" y1="10" x2="120" y2="10" stroke="#ffd1d1" stroke-dasharray="2" />
+                          <line x1="0" y1="40" x2="120" y2="40" stroke="#ffd1d1" stroke-dasharray="2" />
+                          <path d="M 0 25 L 20 20 L 40 35 L 60 15 L 80 45 L 100 25 L 120 22" fill="none" stroke="#e53e3e" stroke-width="2"/>
+                          <rect x="70" y="5" width="20" height="40" fill="rgba(229, 62, 62, 0.1)" rx="3"/>
+                          <circle cx="80" cy="45" r="4" fill="#e53e3e" />
+                        </svg>
+                        <span class="ill-badge-alert">이상 감지</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 우측 해결책 영역 -->
+                  <div class="card-right bg-light-red">
+                    <div class="solution-wrap">
+                      <div class="sol-title-wrap">
+                        <i class="fa-solid fa-circle-check icon-red"></i>
+                        <span class="sol-title">SPC 실시간 모니터링</span>
+                      </div>
+                      <p class="sol-desc">이상 징후 조기 감지로<br>선제적 대응 가능</p>
+                      <a href="#support" class="sol-btn border-red">자세히 보기 <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 03 -->
+                <div class="qa-card">
+                  <!-- 좌측 고민 영역 -->
+                  <div class="card-left">
+                    <span class="card-num num-green">03</span>
+                    <div class="card-text-wrap">
+                      <h2 class="card-title">데이터가 흩어져 있어<br>활용이 어려우신가요?</h2>
+                      <p class="card-desc">품질, 생산, 설비 데이터가 분산되어 분석과 의사결정이 어렵습니다.</p>
+                    </div>
+                  </div>
+                  <!-- 중앙 그래픽/차트 영역 -->
+                  <div class="card-center">
+                    <div class="chart-illustration">
+                      <div class="ill-nodes-hub">
+                        <div class="ill-hub-center">DB</div>
+                        <div class="ill-node n-qms">QMS</div>
+                        <div class="ill-node n-spc">SPC</div>
+                        <div class="ill-node n-mes">MES</div>
+                        <div class="ill-node n-prod">품질</div>
+                        <div class="ill-node n-line">생산</div>
+                        <svg class="ill-hub-svg">
+                          <line x1="50%" y1="50%" x2="20%" y2="20%" stroke="#cbd5e0" stroke-width="1"/>
+                          <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="#cbd5e0" stroke-width="1"/>
+                          <line x1="50%" y1="50%" x2="15%" y2="70%" stroke="#cbd5e0" stroke-width="1"/>
+                          <line x1="50%" y1="50%" x2="85%" y2="75%" stroke="#cbd5e0" stroke-width="1"/>
+                          <line x1="50%" y1="50%" x2="50%" y2="85%" stroke="#cbd5e0" stroke-width="1"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 우측 해결책 영역 -->
+                  <div class="card-right bg-light-green">
+                    <div class="solution-wrap">
+                      <div class="sol-title-wrap">
+                        <i class="fa-solid fa-circle-check icon-green"></i>
+                        <span class="sol-title">데이터 통합 관리</span>
+                      </div>
+                      <p class="sol-desc">데이터를 연결하고<br>분석·활용 극대화</p>
+                      <a href="#support" class="sol-btn border-green">자세히 보기 <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 04 -->
+                <div class="qa-card">
+                  <!-- 좌측 고민 영역 -->
+                  <div class="card-left">
+                    <span class="card-num num-purple">04</span>
+                    <div class="card-text-wrap">
+                      <h2 class="card-title">같은 불량이<br>반복되고 있지 않나요?</h2>
+                      <p class="card-desc">불량 이력과 원인 분석 데이터가 체계적으로 관리되지 않아 재발하는 문제가 많습니다.</p>
+                    </div>
+                  </div>
+                  <!-- 중앙 그래픽/차트 영역 -->
+                  <div class="card-center">
+                    <div class="chart-illustration">
+                      <div class="ill-table-wrap">
+                        <div class="ill-table-header">시정조치 이력</div>
+                        <table class="ill-mini-table">
+                          <tr>
+                            <td>원인 분석</td>
+                            <td><span class="ill-status st-done">완료</span></td>
+                          </tr>
+                          <tr>
+                            <td>개선 조치</td>
+                            <td><span class="ill-status st-ing">진행중</span></td>
+                          </tr>
+                          <tr>
+                            <td>효과 검증</td>
+                            <td><span class="ill-status st-wait">대기</span></td>
+                          </tr>
+                          <tr>
+                            <td>재발 방지</td>
+                            <td><span class="ill-status st-wait">대기</span></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 우측 해결책 영역 -->
+                  <div class="card-right bg-light-purple">
+                    <div class="solution-wrap">
+                      <div class="sol-title-wrap">
+                        <i class="fa-solid fa-circle-check icon-purple"></i>
+                        <span class="sol-title">8D/시정조치 관리</span>
+                      </div>
+                      <p class="sol-desc">이력 기반 원인 분석과<br>재발 방지 체계 구축</p>
+                      <a href="#support" class="sol-btn border-purple">자세히 보기 <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 05 -->
+                <div class="qa-card">
+                  <!-- 좌측 고민 영역 -->
+                  <div class="card-left">
+                    <span class="card-num num-orange">05</span>
+                    <div class="card-text-wrap">
+                      <h2 class="card-title">담당자 경험에만 의존해<br>관리하고 계신가요?</h2>
+                      <p class="card-desc">개인의 노하우와 경험에 의존한 업무 방식으로 일관성 유지와 표준화가 어렵습니다.</p>
+                    </div>
+                  </div>
+                  <!-- 중앙 그래픽/차트 영역 -->
+                  <div class="card-center">
+                    <div class="chart-illustration">
+                      <div class="ill-folder-wrap">
+                        <div class="ill-document-stack">
+                          <div class="ill-doc doc-1"></div>
+                          <div class="ill-doc doc-2"></div>
+                        </div>
+                        <div class="ill-folder">
+                          <i class="fa-solid fa-star icon-folder-star"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 우측 해결책 영역 -->
+                  <div class="card-right bg-light-orange">
+                    <div class="solution-wrap">
+                      <div class="sol-title-wrap">
+                        <i class="fa-solid fa-circle-check icon-orange"></i>
+                        <span class="sol-title">지식 자산화 & 표준화</span>
+                      </div>
+                      <p class="sol-desc">업무 표준화로 일관성 확보,<br>지식 자산으로 활용</p>
+                      <a href="#support" class="sol-btn border-orange">자세히 보기 <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 3. 대형 솔루션 상담 프로모션 배너 섹션 -->
+            <div class="promo-banner-section">
+              <div class="promo-banner-wrapper">
+                <div class="promo-left">
+                  <span class="promo-tag">SOLVA SMART DX PLATFORM <i class="fa-solid fa-chevron-right"></i></span>
+                  <h2 class="promo-title">데이터로 연결하고,<br>지능으로 예측하는 품질 혁신</h2>
+                  <p class="promo-sub">QMS · SPC · MES 통합 플랫폼으로 스마트한 품질 관리를 시작하세요.</p>
+                  <a href="#support" class="promo-btn">솔루션 상담 문의하기 <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="promo-right">
+                  <div class="dx-illustration">
+                    <div class="dx-cloud"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="dx-cubes">
+                      <div class="dx-cube cube-1"></div>
+                      <div class="dx-cube cube-2"></div>
+                      <div class="dx-cube cube-3"></div>
+                    </div>
+                    <div class="dx-dashboard-mockup">
+                      <div class="dx-mock-header"></div>
+                      <div class="dx-mock-lines">
+                        <div class="dx-mock-line" style="width: 70%;"></div>
+                        <div class="dx-mock-line" style="width: 50%;"></div>
+                        <div class="dx-mock-line" style="width: 90%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. 최하단 핵심 특징 요약 탭 영역 -->
+            <div class="features-summary-tabs">
+              <div class="features-tabs-wrapper">
+                <div class="feature-tab-item">
+                  <div class="tab-icon-wrap"><i class="fa-solid fa-desktop"></i></div>
+                  <div class="tab-text-wrap">
+                    <h3>실시간 모니터링</h3>
+                    <p>이상 징후를 즉시 감지</p>
+                  </div>
+                </div>
+                <div class="feature-tab-item">
+                  <div class="tab-icon-wrap"><i class="fa-solid fa-bullseye"></i></div>
+                  <div class="tab-text-wrap">
+                    <h3>문제 예측 및 조기 대응</h3>
+                    <p>불량 확산을 사전에 차단</p>
+                  </div>
+                </div>
+                <div class="feature-tab-item">
+                  <div class="tab-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                  <div class="tab-text-wrap">
+                    <h3>데이터 기반 의사결정</h3>
+                    <p>정확한 분석과 빠른 판단</p>
+                  </div>
+                </div>
+                <div class="feature-tab-item">
+                  <div class="tab-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+                  <div class="tab-text-wrap">
+                    <h3>지속적인 품질 개선</h3>
+                    <p>체계적인 관리로 재발 방지</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <section class="support solva-pinned-purple">
+    <section class="support solva-pinned-purple" id="support">
       <div class="purple-bg-layer"></div>
       <div class="support__container initial-content">
         <div class="support__title-wrapper">
