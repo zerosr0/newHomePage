@@ -244,8 +244,8 @@ main #visual .icons {
 }
 
 main #visual .icons i {
-  font-size: 30px;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 28px;
+  color: rgba(221, 221, 221, 0.9);
   transition: 0.5s;
 }
 
@@ -620,7 +620,6 @@ main .product .product__container>div.on {
 main .product .product__container>div article {
   width: 42%;
   height: 320px;
-  background-color: aqua;
   border-radius: 10px;
   margin-bottom: 50px;
   overflow: hidden;
@@ -838,6 +837,11 @@ main .support.solva-pinned-purple.purple-active a.support__btn:hover {
   background: transparent !important;
   color: #ffffff !important;
   transform: translateY(-3px) scale(1.03);
+}
+
+/* 데스크톱(기본 상태)에서는 Back to Top 버튼 숨김 */
+.back-to-top {
+  display: none;
 }
 
 /* Expanded Form State */
@@ -2009,6 +2013,43 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
 
   main .support .support__container.expanded-content .support__form {
     width: 100% !important;
+  }
+
+  /* 모바일 Back to Top 버튼 스타일 */
+  .back-to-top {
+    display: flex;
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba(1, 16, 96, 0.6); /* 브랜드 다크 네이비 테마의 반투명화 */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    background-color: rgba(1, 16, 96, 0.85);
+    transform: scale(1.08);
   }
 }
 
