@@ -30,6 +30,16 @@ function activation(index) {
   if (slides[index]) slides[index].classList.add('on');
   if (btns[index]) btns[index].classList.add('on');
   vsNum = index;
+
+  // 밝은 슬라이드 배경 활성화 시 헤더에 light-active 클래스 추가
+  const pageHeader = document.querySelector('header.page');
+  if (pageHeader && slides[index]) {
+    if (slides[index].classList.contains('light-bg')) {
+      pageHeader.classList.add('light-active');
+    } else {
+      pageHeader.classList.remove('light-active');
+    }
+  }
 }
 
 function rolling() {
