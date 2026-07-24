@@ -619,32 +619,6 @@ main .product .product__container>div article {
   position: relative;
 }
 
-main .product .product__container>div article .img-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  /* 미세한 밝은 필터 */
-  color: rgba(255, 255, 255, 0.95);
-  font-family: "Wanted Sans Variable", "Pretendard", sans-serif;
-  font-size: 80px;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  pointer-events: none;
-}
-
-main .product .product__container>div article:hover .img-overlay {
-  background-color: rgba(255, 255, 255, 0);
-  /* 필터 제거 */
-  opacity: 0;
-  /* 텍스트 및 오버레이 페이드아웃 */
-}
-
 main .product .product__container>div article:hover img {
   transform: scale(1.1);
 }
@@ -1898,11 +1872,6 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     display: inline-flex !important;
   }
 
-  /* 1000px 이하 products 오버레이 폰트 반응형 */
-  main .product .product__container>div article .img-overlay {
-    font-size: 56px !important;
-  }
-
   /* 1000px news 반응형 */
   main .news .title {
     margin: 80px auto 40px;
@@ -2107,11 +2076,6 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
   /* 768px product 반응형 */
   main .product .product__container>div article {
     height: 200px;
-  }
-
-  /* 768px 이하 products 오버레이 폰트 반응형 */
-  main .product .product__container>div article .img-overlay {
-    font-size: 38px !important;
   }
 
   /* 768px news 반응형 */
