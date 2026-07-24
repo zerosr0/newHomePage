@@ -195,17 +195,17 @@ function updateScrollAnimations(scroll) {
       const containerLeft = (cachedWindowWidth - containerWidth) / 2;
       const containerTop = (cachedWindowHeight - containerHeight) / 2;
 
-      const startLeft = -containerLeft;
-      const startTop = -379;
+      const startLeft = -containerLeft + 30;
+      const startTop = -379 + 30;
       const finalLeft = containerWidth - finalWidth;
       const finalTop = 0;
 
       if (introArticle) {
-        const currentWidth = cachedWindowWidth - (cachedWindowWidth - finalWidth) * animProgress;
-        const currentHeight = cachedWindowHeight - (cachedWindowHeight - finalHeight) * animProgress;
+        const currentWidth = (cachedWindowWidth - 60) - ((cachedWindowWidth - 60) - finalWidth) * animProgress;
+        const currentHeight = (cachedWindowHeight - 60) - ((cachedWindowHeight - 60) - finalHeight) * animProgress;
         const currentLeft = startLeft + (finalLeft - startLeft) * animProgress;
         const currentTop = startTop + (finalTop - startTop) * animProgress;
-        const currentBorderRadius = 10 * animProgress;
+        const currentBorderRadius = 24 - (24 - 16) * animProgress;
 
         introArticle.style.width = `${currentWidth}px`;
         introArticle.style.height = `${currentHeight}px`;

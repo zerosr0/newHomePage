@@ -319,6 +319,7 @@ main .intro .intro__container article {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  border-radius: 24px;
 }
 
 main .intro .intro__container article .intro-img {
@@ -1779,6 +1780,8 @@ main #visual .panel li.on .visual-txt-box .visual-sub-text {
     gap: 30px !important;
     width: 100% !important;
     max-width: 680px !important;
+    padding: 0 30px !important;
+    box-sizing: border-box !important;
   }
 
   main .intro .intro__container .intro-detail {
